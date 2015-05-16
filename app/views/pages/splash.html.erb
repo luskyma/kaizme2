@@ -1,0 +1,9 @@
+<% if current_user %>
+  Provider: <%= current_user.is_provider? %>
+  <br>
+  <% if current_user.is_provider %>
+    Provider: <%= current_user.provider %>
+    <% else %>
+    Patient: <%= current_user.patient %>
+  <% end %>
+<% end %>
