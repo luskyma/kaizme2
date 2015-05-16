@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     # Store this sessionId in the database for later use:
     session_id = session.session_id
 
-    @session = Session.create(sessionid: session.session_id, open: true)
+    @session = Session.create(session_id: session.session_id, open: true)
     @session.save
 
     render json: @session
@@ -28,12 +28,12 @@ class SessionsController < ApplicationController
   def token
     if not params[:id].blank?
       s = Session.find_by(id: params[:id])
-      token = @@opentok.generate_token s.sessionid
+      token = @@opentok.generate_token s.session_id
 
       @token = Token.create(session_id: s.id, token: token, active: true)
       @token.save
 
-      jsonResult = {:sessionid => s.sessionid, :token => token }
+      jsonResult = {:session_id => s.session_id, :token => token }
       render json: jsonResult
 
     end
@@ -49,5 +49,6 @@ class SessionsController < ApplicationController
 
   def view
     @id = params[:id]
+    @session = Session.find(@id)
   end
 end
