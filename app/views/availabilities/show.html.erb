@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Provider:</strong>
+  <%= @availability.provider %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @availability.start %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @availability.end %>
+</p>
+
+<%= link_to 'Edit', edit_availability_path(@availability) %> |
+<%= link_to 'Back', availabilities_path %>

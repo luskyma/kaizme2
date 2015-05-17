@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150516225558) do
+ActiveRecord::Schema.define(version: 20150517202231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer  "provider_id"
+    t.integer  "patient_id"
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "appointments", ["patient_id"], name: "index_appointments_on_patient_id", using: :btree
+  add_index "appointments", ["provider_id"], name: "index_appointments_on_provider_id", using: :btree
+
+  create_table "availabilities", force: :cascade do |t|
+    t.integer  "provider_id"
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "availabilities", ["provider_id"], name: "index_availabilities_on_provider_id", using: :btree
 
   create_table "patients", force: :cascade do |t|
     t.integer  "user_id"
@@ -73,6 +95,9 @@ ActiveRecord::Schema.define(version: 20150516225558) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "appointments", "patients"
+  add_foreign_key "appointments", "providers"
+  add_foreign_key "availabilities", "providers"
   add_foreign_key "patients", "providers"
   add_foreign_key "patients", "users"
   add_foreign_key "providers", "users"

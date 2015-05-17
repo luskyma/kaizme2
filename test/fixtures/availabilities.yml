@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  provider_id: 
+  start: 2015-05-17 16:07:27
+  end: 2015-05-17 16:07:27
+
+two:
+  provider_id: 
+  start: 2015-05-17 16:07:27
+  end: 2015-05-17 16:07:27

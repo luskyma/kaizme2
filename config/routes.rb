@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :appointments
+  resources :availabilities
   devise_for :users, controllers: {registrations: "users/registrations"}
 
   root 'pages#splash'
