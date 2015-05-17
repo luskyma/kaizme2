@@ -1,0 +1,24 @@
+
+<script type="text/javascript">
+$(function() {
+  $('#create-session').click(function (event) {
+    $.ajax({
+      url: "new",
+      type: "GET",
+      async: false
+    })
+    .done(function() {
+      location.reload();
+    });
+    event.preventDefault(); // Prevent link from following its href
+  });
+});
+</script>
+<% @sessions.each do |session| %>
+  Session ID: <%= session.id %>
+  <%= link_to "Join", "#{session.id}", method: :get %>
+  <%= link_to "Close", "#{session.id}/close", method: :get %>
+
+    <br>
+<% end %>
+<%= link_to "Create", "new", :id => "create-session" %>

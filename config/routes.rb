@@ -3,9 +3,19 @@ Rails.application.routes.draw do
 
   root 'pages#splash'
 
+
    devise_scope :user do
     get 'providers/sign_up' => 'users/registrations#new'
   end
+
+
+  resource :session
+  get 'session/index' => 'sessions#index'
+  get 'session/all' => 'sessions#all'
+  get 'session/:id/token' => 'sessions#token'
+  get 'session/:id' => 'sessions#view'
+  get 'session/:id/close' => 'sessions#close'
+  get 'session/new' => 'sessions#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

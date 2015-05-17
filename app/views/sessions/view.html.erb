@@ -1,0 +1,82 @@
+<script src="//static.opentok.com/webrtc/v2.2/js/opentok.min.js"></script>
+<script type="text/javascript">
+
+  var appSessionId = 0;
+  try {
+    appSessionId = parseInt("<%= @session.session_id %>");//this maps our app's session id to tokbox's session id
+  }
+  catch(e)
+  {
+    console.error(e);
+  }
+
+  if(typeof appSessionId === typeof 0) {
+// API KEY
+    var apiKey    = "45238082";
+    var sessionId = "";  //tokbox session id
+    var token = "";
+
+    var jqxhr = $.ajax({
+      url: "/session/" + appSessionId + "/token",
+      type: "GET",
+      async: false
+    })
+    .done(function(r) {
+      console.dir(r);
+      sessionId = r.session_id;
+      token = r.token;
+    })
+    .fail(function(r, textStatus){
+      console.error("Failed."  + textStatus);
+      console.error("text: " + r.responseText);
+      $('body').prepend('Failed to get token.');
+    });
+
+    if(true) {
+      console.log(apiKey)
+      var session = OT.initSession(apiKey, sessionId);
+      console.log('session_setup', session)
+      session.on({
+  // This function runs when session.connect() asynchronously completes
+  sessionConnected: function(event) {
+    console.log('session_connected', session)
+    // Publish the publisher we initialzed earlier (this will trigger 'streamCreated' on other
+    // clients)
+    session.publish(publisher);
+  },
+
+  // This function runs when another client publishes a stream (eg. session.publish())
+  streamCreated: function(event) {
+    console.log('session_created', session)
+    // Create a container for a new Subscriber, assign it an id using the streamId, put it inside
+    // the element with id="subscribers"
+    var subContainer = document.createElement('div');
+    subContainer.id = 'stream-' + event.stream.streamId;
+    document.getElementById('subscribers').appendChild(subContainer);
+
+    // Subscribe to the stream that caused this event, put it inside the container we just made
+    session.subscribe(event.stream, subContainer);
+  }
+});
+
+      session.connect(token, function(error) {
+        var publisher = OT.initPublisher();
+        session.publish(publisher);
+      });
+
+      $(window).unload(function() {
+        session.disconnect();
+      });
+    }
+  }
+  else
+  {
+    $('body').prepend("Must specify app session id in querystring.");
+  }
+</script>
+
+    <div id="publisher"></div>
+
+    <div id="subscribers"></div>
+  <p><%= link_to "Index", "/session/index", :id => "end-session", method: :get %></p>
+
