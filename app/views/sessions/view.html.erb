@@ -1,6 +1,7 @@
-<script src="//static.opentok.com/webrtc/v2.2/js/opentok.min.js"></script>
-<script type="text/javascript">
 
+<script src="//static.opentok.com/webrtc/v2.2/js/opentok.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
   var appSessionId = 0;
   try {
     appSessionId = parseInt("<%= @session.session_id %>");//this maps our app's session id to tokbox's session id
@@ -32,51 +33,103 @@
       $('body').prepend('Failed to get token.');
     });
 
-    if(true) {
-      console.log(apiKey)
-      var session = OT.initSession(apiKey, sessionId);
-      console.log('session_setup', session)
-      session.on({
-  // This function runs when session.connect() asynchronously completes
-  // sessionConnected: function(event) {
-  //   console.log('session_connected', session)
-  //   // Publish the publisher we initialzed earlier (this will trigger 'streamCreated' on other
-  //   // clients)
-  //   session.publish(publisher);
-  // },
+    console.log(apiKey)
+    var session = OT.initSession(apiKey, sessionId);
+    console.log('session_setup', session)
+    session.on({
+      // This function runs when session.connect() asynchronously completes
 
-  // This function runs when another client publishes a stream (eg. session.publish())
-  streamCreated: function(event) {
-    console.log('session_created', session)
-    // Create a container for a new Subscriber, assign it an id using the streamId, put it inside
-    // the element with id="subscribers"
-    var subContainer = document.createElement('div');
-    subContainer.id = 'stream-' + event.stream.streamId;
-    document.getElementById('subscribers').appendChild(subContainer);
+      //This code below causes screen to duplicate:
 
-    // Subscribe to the stream that caused this event, put it inside the container we just made
-    session.subscribe(event.stream, subContainer);
-  }
-});
+      // sessionConnected: function(event) {
+      //   console.log('session_connected', session)
+      //   // Publish the publisher we initialzed earlier (this will trigger 'streamCreated' on other
+      //   // clients)
+      //   session.publish(publisher);
+      // },
 
-      session.connect(token, function(error) {
-        var publisher = OT.initPublisher();
-        session.publish(publisher);
-      });
+      // This function runs when another client publishes a stream (eg. session.publish())
+      streamCreated: function(event) {
+        console.log('session_created', session)
+        // Create a container for a new Subscriber, assign it an id using the streamId, put it inside
+        // the element with id="subscribers"
+        var subContainer = document.createElement('div');
+        subContainer.id = 'stream-' + event.stream.streamId;
+        document.getElementById('subscribers').appendChild(subContainer);
 
-      $(window).unload(function() {
-        session.disconnect();
-      });
-    }
+        // Subscribe to the stream that caused this event, put it inside the container we just made
+        session.subscribe(event.stream, subContainer);
+      },
+      // Receive a message and append it to the history
+      'signal:chat': function(event) {
+          var msg = document.createElement('p');
+          msg.innerHTML = event.data;
+          msg.className = event.from.connectionId === session.connection.connectionId ? 'mine' : 'theirs';
+          document.querySelector('#history').appendChild(msg);
+          msg.scrollIntoView();
+      }
+    });
+
+    session.connect(token, function(error) {
+      var publisher = OT.initPublisher();
+      session.publish(publisher);
+    });
+
+    $(window).unload(function() {
+      session.disconnect();
+    });
   }
   else
   {
     $('body').prepend("Must specify app session id in querystring.");
   }
+
+
+$(function() {
+  alert("I got here");
+
+  // Text Chat
+  var form = document.querySelector('form');
+  var msgTxt = document.querySelector('#msgTxt');
+
+  console.log(form);
+
+  // Send a signal once the user enters data in the form.This will send the data entered to all participants
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    session.signal({
+        type: 'chat',
+        data: msgTxt.value
+    }, function(error) {
+        if (!error) {
+            msgTxt.value = '';
+        }
+    });
+  });
+
+});
+
 </script>
 
-    <div id="publisher"></div>
+  <div id="videos">
 
-    <div id="subscribers"></div>
-  <p><%= link_to "Index", "/session/index", :id => "end-session", method: :get %></p>
+        <div id="subscriber"></div>
+        <div id="publisher"></div>
+
+  </div>
+
+ <div id="textchat">
+
+ <div id="history"></div>
+
+        <form>
+
+        <input type="text" placeholder="Write your message here" id="msgTxt"></input>
+
+        </form>
+
+    <p><%= link_to "Index", "/session/index", :id => "end-session", method: :get %></p>
+
+
 
