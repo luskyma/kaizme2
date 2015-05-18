@@ -2,6 +2,8 @@
 <script src="//static.opentok.com/webrtc/v2.2/js/opentok.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
+
+
 $(function() {
   var appSessionId = 0;
   try {
@@ -75,6 +77,8 @@ $(function() {
 
           // first time through, target publisher
           if (!isSubscriberConnected){
+            console.log('not subscriber connected');
+            console.log(document.getElementById('subscriber'));
             document.getElementById('subscriber').appendChild(subContainer);
             isSubscriberConnected = true;
           }
@@ -132,7 +136,7 @@ $(function() {
 });
 
 </script>
-
+    <p><%= link_to "Index", "/session/index", :id => "end-session", method: :get %></p>
   <div id="videos">
 
       Doctor
@@ -152,7 +156,7 @@ $(function() {
 
         </form>
 
-    <p><%= link_to "Index", "/session/index", :id => "end-session", method: :get %></p>
+
 
 
 
