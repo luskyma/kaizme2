@@ -59,10 +59,10 @@
   }
 });
 
-      session.connect(token, function(error) {
-        var publisher = OT.initPublisher();
-        session.publish(publisher);
-      });
+      // session.connect(token, function(error) {
+      //   var publisher = OT.initPublisher();
+      //   session.publish(publisher);
+      // });
 
       $(window).unload(function() {
         session.disconnect();
