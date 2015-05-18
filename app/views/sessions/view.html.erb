@@ -2,6 +2,7 @@
 <script src="//static.opentok.com/webrtc/v2.2/js/opentok.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
+$(function() {
   var appSessionId = 0;
   try {
     appSessionId = parseInt("<%= @session.session_id %>");//this maps our app's session id to tokbox's session id
@@ -33,9 +34,24 @@
       $('body').prepend('Failed to get token.');
     });
 
-    console.log(apiKey)
+    console.log(apiKey);
     var session = OT.initSession(apiKey, sessionId);
+
     console.log('session_setup', session)
+
+    session.connect(token, function(error) {
+      var publisher = OT.initPublisher();
+      // console.log('connect publish');
+      session.publish(publisher);
+
+      //TODO: move #OT_143cad9c_545e_4e72_b16d_76231405e530 to #publisher
+
+    });
+
+    var isPublisherConnected = false;
+    var isSubscriberConnected = false;
+    var isConnected = false;
+
     session.on({
       // This function runs when session.connect() asynchronously completes
 
@@ -50,15 +66,23 @@
 
       // This function runs when another client publishes a stream (eg. session.publish())
       streamCreated: function(event) {
-        console.log('session_created', session)
-        // Create a container for a new Subscriber, assign it an id using the streamId, put it inside
-        // the element with id="subscribers"
-        var subContainer = document.createElement('div');
-        subContainer.id = 'stream-' + event.stream.streamId;
-        document.getElementById('subscribers').appendChild(subContainer);
+        if (!isConnected){
+          console.log('session_created', session)
+          // Create a container for a new Subscriber, assign it an id using the streamId, put it inside
+          // the element with id="subscribers"
+          var subContainer = document.createElement('div');
+          subContainer.id = 'stream-' + event.stream.streamId;
 
-        // Subscribe to the stream that caused this event, put it inside the container we just made
-        session.subscribe(event.stream, subContainer);
+          // first time through, target publisher
+          if (!isSubscriberConnected){
+            document.getElementById('subscriber').appendChild(subContainer);
+            isSubscriberConnected = true;
+          }
+
+          // Subscribe to the stream that caused this event, put it inside the container we just made
+          session.subscribe(event.stream, subContainer);
+          isConnected = true;
+        }
       },
       // Receive a message and append it to the history
       'signal:chat': function(event) {
@@ -70,10 +94,8 @@
       }
     });
 
-    session.connect(token, function(error) {
-      var publisher = OT.initPublisher();
-      session.publish(publisher);
-    });
+
+
 
     $(window).unload(function() {
       session.disconnect();
@@ -85,8 +107,7 @@
   }
 
 
-$(function() {
-  alert("I got here");
+
 
   // Text Chat
   var form = document.querySelector('form');
@@ -114,7 +135,9 @@ $(function() {
 
   <div id="videos">
 
+      Doctor
         <div id="subscriber"></div>
+        Self
         <div id="publisher"></div>
 
   </div>
