@@ -26,15 +26,20 @@ class SessionsController < ApplicationController
   end
 
   def token
-    if not params[:id].blank?
-      s = Session.find_by(id: params[:id])
-      token = @@opentok.generate_token s.session_id
+    if not params[:session_id].blank?
+      @token = Token.find_by(session_id: params[:session_id])
 
-      @token = Token.create(session_id: s.id, token: token, active: true)
-      @token.save
+      if @token
+        token = @token.token
+      else
+        token = @@opentok.generate_token params[:session_id]
 
-      jsonResult = {:session_id => s.session_id, :token => token }
-      render json: jsonResult
+        @token = Token.create(session_id: params[:session_id], token: token, active: true)
+        @token.save
+      end
+
+      jsonResult = { :token => token }
+      render :json => jsonResult
 
     end
   end

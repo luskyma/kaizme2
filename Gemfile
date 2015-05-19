@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
+
 gem 'devise'
+
+# gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 gem "opentok", "~> 2.2"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

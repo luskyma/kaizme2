@@ -5,110 +5,95 @@
 
 
 $(function() {
-  var appSessionId = 0;
-  try {
-    appSessionId = parseInt("<%= @session.session_id %>");//this maps our app's session id to tokbox's session id
-  }
-  catch(e)
-  {
-    console.error(e);
-  }
-
-  if(typeof appSessionId === typeof 0) {
 // API KEY
-    var apiKey    = "45238082";
-    var sessionId = "";  //tokbox session id
-    var token = "";
+  var apiKey    = "45238082";
+  var sessionId = "<%= @session.session_id %>";  //tokbox session id
+  var token = "";
 
-    var jqxhr = $.ajax({
-      url: "/session/" + appSessionId + "/token",
-      type: "GET",
-      async: false
-    })
-    .done(function(r) {
-      console.dir(r);
-      sessionId = r.session_id;
-      token = r.token;
-    })
-    .fail(function(r, textStatus){
-      console.error("Failed."  + textStatus);
-      console.error("text: " + r.responseText);
-      $('body').prepend('Failed to get token.');
-    });
+  var jqxhr = $.ajax({
+    url: "/session/" + sessionId + "/token.json",
+    type: "GET",
+    async: false,
+    dataType: 'json'
+  })
+  .done(function(r) {
+    console.dir(r);
+    token = r.token;
+  })
+  .fail(function(r, textStatus){
+    console.error("Failed."  + textStatus);
+    console.error("text: " + r.responseText);
+    $('body').prepend('Failed to get token.');
+  });
 
-    console.log(apiKey);
-    var session = OT.initSession(apiKey, sessionId);
+  console.log(apiKey);
+  var session = OT.initSession(apiKey, sessionId);
 
-    console.log('session_setup', session)
+  console.log('session_setup', session)
 
-    session.connect(token, function(error) {
-      var publisher = OT.initPublisher();
-      // console.log('connect publish');
-      session.publish(publisher);
+  session.connect(token, function(error) {
+    var publisher = OT.initPublisher();
+    // console.log('connect publish');
+    session.publish(publisher);
 
-      //TODO: move #OT_143cad9c_545e_4e72_b16d_76231405e530 to #publisher
+    //TODO: move #OT_143cad9c_545e_4e72_b16d_76231405e530 to #publisher
 
-    });
+  });
 
-    var isPublisherConnected = false;
-    var isSubscriberConnected = false;
-    var isConnected = false;
+  var isPublisherConnected = false;
+  var isSubscriberConnected = false;
+  var isConnected = false;
 
-    session.on({
-      // This function runs when session.connect() asynchronously completes
+  session.on({
+    // This function runs when session.connect() asynchronously completes
 
-      //This code below causes screen to duplicate:
+    //This code below causes screen to duplicate:
 
-      // sessionConnected: function(event) {
-      //   console.log('session_connected', session)
-      //   // Publish the publisher we initialzed earlier (this will trigger 'streamCreated' on other
-      //   // clients)
-      //   session.publish(publisher);
-      // },
+    // sessionConnected: function(event) {
+    //   console.log('session_connected', session)
+    //   // Publish the publisher we initialzed earlier (this will trigger 'streamCreated' on other
+    //   // clients)
+    //   session.publish(publisher);
+    // },
 
-      // This function runs when another client publishes a stream (eg. session.publish())
-      streamCreated: function(event) {
-        if (!isConnected){
-          console.log('session_created', session)
-          // Create a container for a new Subscriber, assign it an id using the streamId, put it inside
-          // the element with id="subscribers"
-          var subContainer = document.createElement('div');
-          subContainer.id = 'stream-' + event.stream.streamId;
+    // This function runs when another client publishes a stream (eg. session.publish())
+    streamCreated: function(event) {
+      if (!isConnected){
+        console.log('session_created', session)
+        // Create a container for a new Subscriber, assign it an id using the streamId, put it inside
+        // the element with id="subscribers"
+        var subContainer = document.createElement('div');
+        subContainer.id = 'stream-' + event.stream.streamId;
 
-          // first time through, target publisher
-          if (!isSubscriberConnected){
-            console.log('not subscriber connected');
-            console.log(document.getElementById('subscriber'));
-            document.getElementById('subscriber').appendChild(subContainer);
-            isSubscriberConnected = true;
-          }
-
-          // Subscribe to the stream that caused this event, put it inside the container we just made
-          session.subscribe(event.stream, subContainer);
-          isConnected = true;
+        // first time through, target publisher
+        if (!isSubscriberConnected){
+          console.log('not subscriber connected');
+          console.log(document.getElementById('subscriber'))
+          document.getElementById('subscriber').appendChild(subContainer);
+          isSubscriberConnected = true;
         }
-      },
-      // Receive a message and append it to the history
-      'signal:chat': function(event) {
-          var msg = document.createElement('p');
-          msg.innerHTML = event.data;
-          msg.className = event.from.connectionId === session.connection.connectionId ? 'mine' : 'theirs';
-          document.querySelector('#history').appendChild(msg);
-          msg.scrollIntoView();
+
+        // Subscribe to the stream that caused this event, put it inside the container we just made
+        session.subscribe(event.stream, subContainer);
+        isConnected = true;
       }
-    });
+    },
+    // Receive a message and append it to the history
+    'signal:chat': function(event) {
+        var msg = document.createElement('p');
+        msg.innerHTML = event.data;
+        msg.className = event.from.connectionId === session.connection.connectionId ? 'mine' : 'theirs';
+        document.querySelector('#history').appendChild(msg);
+        msg.scrollIntoView();
+    }
+  });
 
 
 
 
-    $(window).unload(function() {
-      session.disconnect();
-    });
-  }
-  else
-  {
-    $('body').prepend("Must specify app session id in querystring.");
-  }
+  $(window).unload(function() {
+    session.disconnect();
+  });
 
 
 

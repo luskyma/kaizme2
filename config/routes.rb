@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   resource :session
   get 'session/index' => 'sessions#index'
   get 'session/all' => 'sessions#all'
-  get 'session/:id/token' => 'sessions#token'
+
+  scope :format => true, :constraints => { :format => 'json' } do
+    get 'session/:session_id/token' => 'sessions#token'
+  end
+
   get 'session/:id' => 'sessions#view'
   get 'session/:id/close' => 'sessions#close'
   get 'session/new' => 'sessions#new'
