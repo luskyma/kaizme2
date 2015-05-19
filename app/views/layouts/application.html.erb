@@ -19,6 +19,9 @@
   <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
 <br>
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
 <br>
 
 

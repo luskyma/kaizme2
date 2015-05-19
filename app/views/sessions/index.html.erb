@@ -21,4 +21,6 @@ $(function() {
 
     <br>
 <% end %>
+<% if user_signed_in? && current_user.is_provider %>
 <%= link_to "Create", "new", :id => "create-session" %>
+<% end %>

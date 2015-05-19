@@ -6,6 +6,7 @@
 
 $(function() {
   var sessionId = "<%= @session.session_id %>";  //tokbox session id
+  var userType = "<%= @userType %>"; // either 'provider' or 'patient'
 
   var jqxhr = $.ajax({
     url: "/session/" + sessionId + "/token.json",
@@ -15,7 +16,7 @@ $(function() {
   })
   .done(function(r) {
     console.dir(r);
-    initialize(sessionId, r.token);
+    initialize(sessionId, r.token, userType);
   })
   .fail(function(r, textStatus){
     console.error("Failed."  + textStatus);
@@ -24,7 +25,7 @@ $(function() {
   });
 });
 
-function initialize(sessionId, token) {
+function initialize(sessionId, token, userType) {
   // API KEY
   var apiKey  = "45238082";
   var session = OT.initSession(apiKey, sessionId);
@@ -33,7 +34,7 @@ function initialize(sessionId, token) {
   console.log('session_setup', session)
 
   session.connect(token, function(error) {
-    var publisher = OT.initPublisher();
+    var publisher = OT.initPublisher(userType);
     // console.log('connect publish');
     session.publish(publisher);
 
@@ -55,6 +56,8 @@ function initialize(sessionId, token) {
 
     // This function runs when another client publishes a stream (eg. session.publish())
     streamCreated: function(event) {
+      var divID = userType === 'provider' ? 'patient' : 'provider';
+
       console.log('session_created', session)
       // Create a container for a new Subscriber, assign it an id using the streamId, put it inside
       // the element with id="subscribers"
@@ -63,8 +66,8 @@ function initialize(sessionId, token) {
 
       // first time through, target publisher
       console.log('not subscriber connected');
-      console.log(document.getElementById('subscriber'))
-      document.getElementById('subscriber').appendChild(subContainer);
+      console.log(document.getElementById(divID))
+      document.getElementById(divID).appendChild(subContainer);
 
       // Subscribe to the stream that caused this event, put it inside the container we just made
       session.subscribe(event.stream, subContainer);
@@ -115,10 +118,11 @@ function initialize(sessionId, token) {
     <p><%= link_to "Index", "/session/index", :id => "end-session", method: :get %></p>
   <div id="videos">
 
-      Doctor
-        <div id="subscriber"></div>
-        Self
-        <div id="publisher"></div>
+        Provider
+        <div id="provider"></div>
+
+        Patient
+        <div id="patient"></div>
 
   </div>
 

@@ -55,5 +55,17 @@ class SessionsController < ApplicationController
   def view
     @id = params[:id]
     @session = Session.find(@id)
+
+    if not user_signed_in?
+      flash[:notice] = "You must be logged in to join a session"
+      redirect_to action: "index"
+      return
+    end
+
+    if (current_user.is_provider)
+      @userType = 'provider'
+    else
+      @userType = 'patient'
+    end
   end
 end
