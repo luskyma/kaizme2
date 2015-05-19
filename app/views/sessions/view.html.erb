@@ -56,6 +56,9 @@ function initialize(sessionId, token) {
     //   // clients)
     //   session.publish(publisher);
     // },
+    sessionDisconnected: function () {
+      isConnected = false;
+    },
 
     // This function runs when another client publishes a stream (eg. session.publish())
     streamCreated: function(event) {
