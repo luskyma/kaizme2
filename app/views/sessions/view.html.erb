@@ -62,12 +62,9 @@ function initialize(sessionId, token) {
       subContainer.id = 'stream-' + event.stream.streamId;
 
       // first time through, target publisher
-      if (!isSubscriberConnected){
-        console.log('not subscriber connected');
-        console.log(document.getElementById('subscriber'))
-        document.getElementById('subscriber').appendChild(subContainer);
-        isSubscriberConnected = true;
-      }
+      console.log('not subscriber connected');
+      console.log(document.getElementById('subscriber'))
+      document.getElementById('subscriber').appendChild(subContainer);
 
       // Subscribe to the stream that caused this event, put it inside the container we just made
       session.subscribe(event.stream, subContainer);
