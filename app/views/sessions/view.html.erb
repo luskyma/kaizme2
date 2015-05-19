@@ -41,10 +41,6 @@ function initialize(sessionId, token) {
 
   });
 
-  var isPublisherConnected = false;
-  var isSubscriberConnected = false;
-  var isConnected = false;
-
   session.on({
     // This function runs when session.connect() asynchronously completes
 
@@ -56,40 +52,25 @@ function initialize(sessionId, token) {
     //   // clients)
     //   session.publish(publisher);
     // },
-    sessionDisconnected: function () {
-      console.log('sessionDisconnected');
-      isConnected = false;
-    },
-    connectionDestroyed: function () {
-      console.log('connectionDestroyed');
-      isConnected = false;
-    },
-    streamDestroyed: function () {
-      console.log('streamDestroyed');
-      isConnected = false;
-    },
 
     // This function runs when another client publishes a stream (eg. session.publish())
     streamCreated: function(event) {
-      if (!isConnected){
-        console.log('session_created', session)
-        // Create a container for a new Subscriber, assign it an id using the streamId, put it inside
-        // the element with id="subscribers"
-        var subContainer = document.createElement('div');
-        subContainer.id = 'stream-' + event.stream.streamId;
+      console.log('session_created', session)
+      // Create a container for a new Subscriber, assign it an id using the streamId, put it inside
+      // the element with id="subscribers"
+      var subContainer = document.createElement('div');
+      subContainer.id = 'stream-' + event.stream.streamId;
 
-        // first time through, target publisher
-        if (!isSubscriberConnected){
-          console.log('not subscriber connected');
-          console.log(document.getElementById('subscriber'))
-          document.getElementById('subscriber').appendChild(subContainer);
-          isSubscriberConnected = true;
-        }
-
-        // Subscribe to the stream that caused this event, put it inside the container we just made
-        session.subscribe(event.stream, subContainer);
-        isConnected = true;
+      // first time through, target publisher
+      if (!isSubscriberConnected){
+        console.log('not subscriber connected');
+        console.log(document.getElementById('subscriber'))
+        document.getElementById('subscriber').appendChild(subContainer);
+        isSubscriberConnected = true;
       }
+
+      // Subscribe to the stream that caused this event, put it inside the container we just made
+      session.subscribe(event.stream, subContainer);
     },
     // Receive a message and append it to the history
     'signal:chat': function(event) {
