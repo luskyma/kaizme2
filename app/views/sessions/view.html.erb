@@ -57,6 +57,15 @@ function initialize(sessionId, token) {
     //   session.publish(publisher);
     // },
     sessionDisconnected: function () {
+      console.log('sessionDisconnected');
+      isConnected = false;
+    },
+    connectionDestroyed: function () {
+      console.log('connectionDestroyed');
+      isConnected = false;
+    },
+    streamDestroyed: function () {
+      console.log('streamDestroyed');
       isConnected = false;
     },
 
