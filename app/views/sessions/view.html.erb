@@ -5,10 +5,7 @@
 
 
 $(function() {
-// API KEY
-  var apiKey    = "45238082";
   var sessionId = "<%= @session.session_id %>";  //tokbox session id
-  var token = "";
 
   var jqxhr = $.ajax({
     url: "/session/" + sessionId + "/token.json",
@@ -18,17 +15,21 @@ $(function() {
   })
   .done(function(r) {
     console.dir(r);
-    token = r.token;
+    initialize(sessionId, r.token);
   })
   .fail(function(r, textStatus){
     console.error("Failed."  + textStatus);
     console.error("text: " + r.responseText);
     $('body').prepend('Failed to get token.');
   });
+});
 
-  console.log(apiKey);
+function initialize(sessionId, token) {
+  // API KEY
+  var apiKey  = "45238082";
   var session = OT.initSession(apiKey, sessionId);
 
+  console.log(apiKey);
   console.log('session_setup', session)
 
   session.connect(token, function(error) {
