@@ -4,7 +4,7 @@ class AvailabilitiesController < ApplicationController
   # GET /availabilities
   # GET /availabilities.json
   def index
-    @availabilities = Availability.all
+    @availabilities = Appointment.all
   end
 
   # GET /availabilities/1
@@ -14,7 +14,7 @@ class AvailabilitiesController < ApplicationController
 
   # GET /availabilities/new
   def new
-    @availability = Availability.new
+    @availability = Appointment.new
   end
 
   # GET /availabilities/1/edit
@@ -24,7 +24,7 @@ class AvailabilitiesController < ApplicationController
   # POST /availabilities
   # POST /availabilities.json
   def create
-    @availability = Availability.new(availability_params)
+    @availability = Appointment.new(availability_params)
 
     respond_to do |format|
       if @availability.save
@@ -64,11 +64,11 @@ class AvailabilitiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_availability
-      @availability = Availability.find(params[:id])
+      @availability = Appointment.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def availability_params
-      params.require(:availability).permit(:provider_id, :start, :end)
+      params.require(:appointment).permit(:provider_id, :start, :end)
     end
 end
