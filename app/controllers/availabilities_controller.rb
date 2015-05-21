@@ -4,7 +4,7 @@ class AvailabilitiesController < ApplicationController
   # GET /availabilities
   # GET /availabilities.json
   def index
-    @availabilities = Appointment.all
+    @availabilities = Availability.all
   end
 
   # GET /availabilities/1
@@ -14,7 +14,8 @@ class AvailabilitiesController < ApplicationController
 
   # GET /availabilities/new
   def new
-    @availability = Appointment.new
+    @availability = Availability.new
+    @availabilities = current_user.provider.availabilities
   end
 
   # GET /availabilities/1/edit
@@ -24,18 +25,23 @@ class AvailabilitiesController < ApplicationController
   # POST /availabilities
   # POST /availabilities.json
   def create
-    # @availability = Appointment.new(availability_params)
-    current_user.generate(params[:days], params[:time])
-    redirect_to root_path
-    # respond_to do |format|
-    #   if @availability.save
-    #     format.html { redirect_to @availability, notice: 'Availability was successfully created.' }
-    #     format.json { render :show, status: :created, location: @availability }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @availability.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    @availability = current_user.provider.availabilities.new(availability_params)
+
+    if @availability.end.nil?
+      @availability.end = @availability.start + 1.hour
+    end
+
+    # current_user.generate(params[:days], params[:time])
+    # redirect_to root_path
+    respond_to do |format|
+      if @availability.save
+        format.html { redirect_to @availability, notice: 'Availability was successfully created.' }
+        format.json { render :show, status: :created, location: @availability }
+      else
+        format.html { render :new }
+        format.json { render json: @availability.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /availabilities/1
@@ -65,11 +71,11 @@ class AvailabilitiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_availability
-      @availability = Appointment.find(params[:id])
+      @availability = Availability.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def availability_params
-      params.require(:appointment).permit(:provider_id, :start, :end)
+      params.require(:availability).permit(:provider_id, :start, :end)
     end
 end

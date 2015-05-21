@@ -14,3 +14,32 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+function ready() {
+  $('input.avail').change(function() {
+    //console.log(arguments);
+    var box = $(this);
+    if (box.is(':checked')) {
+      $.ajax({
+        type: 'POST',
+        url: '/availabilities.json',
+        data: { availability: { start: box.val() }},
+        complete: function() {
+          //console.log(arguments);
+        }
+      });
+    } else {
+      var id = $(box).data('availability');
+      $.ajax({
+        type: 'DELETE',
+        url: '/availabilities/' + id + '.json',
+        complete: function() {
+          //console.log(arguments);
+        }
+      });
+    }
+  });
+}
+
+$(ready);
+$(document).on('page:load', ready);

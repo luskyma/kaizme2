@@ -1,35 +1,39 @@
-<%= form_for(@availability) do |f| %>
-  <% if @availability.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@availability.errors.count, "error") %> prohibited this availability from being saved:</h2>
+<%
+  today = DateTime.current
+  avails = @availabilities.to_a
+%>
 
-      <ul>
-      <% @availability.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<% if @availability.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@availability.errors.count, "error") %> prohibited this availability from being saved:</h2>
 
-  <%= fields_for :days do |d| %>
-    <%= d.label :monday, "Mon, 24" %>
-    <br>
-    <%= d.check_box :monday %>
-    <br>
-    <%= d.check_box :tuesday %>
-    <%= d.check_box :wednesday %>
-    <%= d.check_box :thursday %>
-    <%= d.check_box :friday %>
-    <%= d.check_box :saturday %>
-    <%= d.check_box :sunday %>
-  <% end %>
-<br>
-  <%= fields_for :time do |t| %>
-    <%= t.time_select :start %>
-    <%= t.time_select :end %>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+    <ul>
+    <% @availability.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
   </div>
 <% end %>
+
+<% (0..6).each do |day| %>
+  <div class="day">
+    <% this_day = today.beginning_of_week + day.days %>
+    <span class="date"><%= this_day.strftime('%A') %></span>
+    <span><%= this_day.strftime('%B %d') %></span>
+    <% 6.upto(20) do |hour| %>
+      <div>
+        <span class="time">
+          <%
+            this_datetime = this_day.to_datetime.change(hour: hour)
+            availability = avails.find { |a| a.start == this_datetime }
+            checked = !availability.nil?
+          %>
+          <%= this_datetime.strftime('%I %p') %>
+          <%= check_box_tag this_datetime.to_s, this_datetime.to_s, checked, class: "avail", data: {availability:  (checked ? availability.id : '') } %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+<%end %>
+
+
