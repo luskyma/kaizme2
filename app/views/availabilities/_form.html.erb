@@ -11,18 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :provider_id %><br>
-    <%= f.text_field :provider_id %>
-  </div>
-  <div class="field">
-    <%= f.label :start %><br>
-    <%= f.datetime_select :start %>
-  </div>
-  <div class="field">
-    <%= f.label :end %><br>
-    <%= f.datetime_select :end %>
-  </div>
+  <%= fields_for :days do |d| %>
+    <%= d.label :monday, "Mon, 24" %>
+    <br>
+    <%= d.check_box :monday %>
+    <br>
+    <%= d.check_box :tuesday %>
+    <%= d.check_box :wednesday %>
+    <%= d.check_box :thursday %>
+    <%= d.check_box :friday %>
+    <%= d.check_box :saturday %>
+    <%= d.check_box :sunday %>
+  <% end %>
+<br>
+  <%= fields_for :time do |t| %>
+    <%= t.time_select :start %>
+    <%= t.time_select :end %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

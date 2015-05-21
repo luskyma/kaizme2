@@ -24,17 +24,18 @@ class AvailabilitiesController < ApplicationController
   # POST /availabilities
   # POST /availabilities.json
   def create
-    @availability = Appointment.new(availability_params)
-
-    respond_to do |format|
-      if @availability.save
-        format.html { redirect_to @availability, notice: 'Availability was successfully created.' }
-        format.json { render :show, status: :created, location: @availability }
-      else
-        format.html { render :new }
-        format.json { render json: @availability.errors, status: :unprocessable_entity }
-      end
-    end
+    # @availability = Appointment.new(availability_params)
+    current_user.generate(params[:days], params[:time])
+    redirect_to root_path
+    # respond_to do |format|
+    #   if @availability.save
+    #     format.html { redirect_to @availability, notice: 'Availability was successfully created.' }
+    #     format.json { render :show, status: :created, location: @availability }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @availability.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /availabilities/1

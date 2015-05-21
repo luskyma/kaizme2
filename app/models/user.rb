@@ -21,4 +21,35 @@ class User < ActiveRecord::Base
     Patient.create(user: self)
   end
 
+  def generate(days, time)
+    days.each do |day, avaliable|
+      if day == "1"
+
+        Time.new.next(day)
+
+
+
+
+
+        (time["start(4i)"]..time["end(4i)"]).each do |t|
+          # Appointment.create(provider_id: self.provider.id, datetime: -----)
+          #<APPOINTMENT190237102xxxasha:   @day = "Monday"    @time="8">
+        end
+      end
+    end
+  end
+
+
+
+
+
 end
+
+
+
+
+
+
+
+
+
