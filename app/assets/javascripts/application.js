@@ -16,27 +16,68 @@
 //= require_tree .
 
 function ready() {
+
+  // When the input is changed do something.
+
   $('input.avail').change(function() {
-    //console.log(arguments);
-    var box = $(this);
+
+    box = $(this); // set this to box for readability and
+                   // our own sanity of trying to understand js scoping
+
+    // reads like english, if box is checked do a thing else do another thing
     if (box.is(':checked')) {
+
+      // Make an ajax post to availabilities#create
+      // with the availability start time,
+      // after it's done set the data-availability
+      // with its id.
+
       $.ajax({
+        // set the type to POST
         type: 'POST',
+        // set the url
         url: '/availabilities.json',
-        data: { availability: { start: box.val() }},
-        complete: function() {
-          //console.log(arguments);
+        // send the start time
+        data: {availability: {start: box.val() }},
+
+        // After a succesful availability creation
+        // set the data-availability with the
+        // availability id.
+        complete: function(data) {
+
+          // availabilities#create returns
+          // the created availability as json
+          availability = data.responseJSON;
+
+          // set the data-availability to the availability id
+          box.attr('data-availability', availability.id);
         }
       });
+
     } else {
-      var id = $(box).data('availability');
+
+      // If it is not checked then delete the availability
+      // set in the data-availability attribute.
+
+      // Get the availability id from the
+      // data-availability attribute we set.
+      id = $(box).attr('data-availability');
+
+      // Make ajax post to availabilities#destroy
       $.ajax({
+
+        // set the type to DELETE
         type: 'DELETE',
+
+        // set the url for delete
+        // with the id '/availabilities/:id.json'
         url: '/availabilities/' + id + '.json',
+
         complete: function() {
           //console.log(arguments);
         }
       });
+
     }
   });
 }
