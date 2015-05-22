@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
-    current_user.is_provider ? new_availability_path : new_appointment_path
+    current_user.is_provider ? dashboard_providers_path : dashboard_patients_path
   end
 end
