@@ -11,17 +11,17 @@ Rails.application.routes.draw do
   end
 
 
-  resource :session
-  get 'session/index' => 'sessions#index'
-  get 'session/all' => 'sessions#all'
+  resource :tok
+  get 'tok/index' => 'toks#index'
+  get 'tok/all' => 'toks#all'
 
   scope :format => true, :constraints => { :format => 'json' } do
-    get 'session/:session_id/token' => 'sessions#token'
+    get 'tok/:tok_id/token' => 'toks#token'
   end
 
-  get 'session/:id' => 'sessions#view'
-  get 'session/:id/close' => 'sessions#close'
-  get 'session/new' => 'sessions#new'
+  get 'tok/:id' => 'toks#view'
+  get 'tok/:id/close' => 'toks#close'
+  get 'tok/new' => 'toks#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

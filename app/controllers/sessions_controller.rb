@@ -1,6 +1,6 @@
 require "opentok"
 
-class SessionsController < ApplicationController
+class TokController < ApplicationController
 # "API KEY", "API SECRET"
   @@opentok = OpenTok::OpenTok.new "45238082", "a62d3ab57b303a797049e5357d8851e16248dc32"
   def new
@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    redirect_to root_path
   end
 
   def close
