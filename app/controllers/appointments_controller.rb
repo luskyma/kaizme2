@@ -14,6 +14,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
+    @provider = Provider.all
     @appointment = Appointment.new
   end
 
