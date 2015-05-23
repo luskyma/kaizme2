@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 20150519151624) do
   add_index "appointments", ["patient_id"], name: "index_appointments_on_patient_id", using: :btree
   add_index "appointments", ["provider_id"], name: "index_appointments_on_provider_id", using: :btree
 
+  create_table "availabilities", force: :cascade do |t|
+    t.integer  "provider_id"
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "availabilities", ["provider_id"], name: "index_availabilities_on_provider_id", using: :btree
+
   create_table "fullcalendar_engine_event_series", force: :cascade do |t|
     t.integer  "frequency",  default: 1
     t.string   "period",     default: "monthly"
@@ -110,6 +120,7 @@ ActiveRecord::Schema.define(version: 20150519151624) do
 
   add_foreign_key "appointments", "patients"
   add_foreign_key "appointments", "providers"
+  add_foreign_key "availabilities", "providers"
   add_foreign_key "patients", "providers"
   add_foreign_key "patients", "users"
   add_foreign_key "providers", "users"
