@@ -21,7 +21,7 @@ function ready() {
 
   $('input.avail').change(function() {
 
-    var box = $(this); // set this to box for readability and
+    box = $(this); // set this to box for readability and
                    // our own sanity of trying to understand js scoping
 
     // reads like english, if box is checked do a thing else do another thing
@@ -43,14 +43,14 @@ function ready() {
         // After a succesful availability creation
         // set the data-availability with the
         // availability id.
-        complete: function() {
+        complete: function(data) {
 
           // availabilities#create returns
           // the created availability as json
-          // availability = data.responseJSON;
+          availability = data.responseJSON;
 
-          // // set the data-availability to the availability id
-          // box.attr('data-availability', availability.id);
+          // set the data-availability to the availability id
+          box.attr('data-availability', availability.id);
         }
       });
 
@@ -61,7 +61,7 @@ function ready() {
 
       // Get the availability id from the
       // data-availability attribute we set.
-      var id = $(box).data('availability');
+      id = $(box).attr('data-availability');
 
       // Make ajax post to availabilities#destroy
       $.ajax({
