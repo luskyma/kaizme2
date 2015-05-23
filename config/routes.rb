@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'dashboard/providers'
   get 'dashboard/patients'
 
+  get 'dashboard/find_a_provider'
+
   resources :appointments
   resources :availabilities
   devise_for :users, controllers: {registrations: "users/registrations"}

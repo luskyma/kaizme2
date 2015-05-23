@@ -4,6 +4,6 @@
   <% if current_user.is_provider %>
     Provider: <%= current_user.provider %>
     <% else %>
-    Patient: <%= current_user.patient %>
+    Patient: <%= current_user.patient.user.first_name %>
   <% end %>
 <% end %>
