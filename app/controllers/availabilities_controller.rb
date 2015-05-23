@@ -16,6 +16,7 @@ class AvailabilitiesController < ApplicationController
   def new
     @availability = Availability.new
     @availabilities = current_user.provider.availabilities
+
   end
 
   # GET /availabilities/1/edit

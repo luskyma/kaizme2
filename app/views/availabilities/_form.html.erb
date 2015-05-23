@@ -19,7 +19,7 @@
   <div class="day">
     <% this_day = today.beginning_of_week + day.days %>
     <span class="date"><%= this_day.strftime('%A') %></span>
-    <span><%= this_day.strftime('%B %d') %></span>
+    <p><%= this_day.strftime('%B %d') %></p>
     <% 6.upto(20) do |hour| %>
       <div>
         <span class="time">

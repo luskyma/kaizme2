@@ -30,3 +30,6 @@ span.timeblocks {
 .no-display input:checked + span {
     background-color: #00FFFF;
 }
+.day {
+  float: left;
+}
