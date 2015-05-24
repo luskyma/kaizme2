@@ -4,7 +4,5 @@ class Appointment < ActiveRecord::Base
   after_create :test
   scope :for_patient, ->(user_id) { Appointment.where patient_id: user_id }
 
-  def test
 
-  end
 end

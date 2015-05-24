@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   after_create :determine_role
 
+  scope :is_a_provider, -> { User.where is_provider: true }
+
   def determine_role
     is_provider ? create_as_provider : create_as_patient
   end

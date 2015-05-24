@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'dashboard/patient_profile'
   get 'dashboard/provider_profile'
 
+  get 'appointments/book'
   resources :appointments
   resources :availabilities
   devise_for :users, controllers: {registrations: "users/registrations"}

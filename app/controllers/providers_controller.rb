@@ -1,5 +1,5 @@
 class ProvidersController < ApplicationController
   def find_a_provider
-    binding.pry
+    @providers = User.is_a_provider
   end
 end
