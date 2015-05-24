@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'dashboard/patients'
 
   get 'dashboard/find_a_provider'
+  get 'dashboard/patient_profile'
+  get 'dashboard/provider_profile'
 
   resources :appointments
   resources :availabilities

@@ -26,6 +26,16 @@
     <%= f.telephone_field :phone_number %>
   </div>
 
+  <div class="field">
+    <%= f.label :dob %><br />
+    <%= f.date_field :dob %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select :gender, [["Not Telling", "not telling"], ["Male", "male"], ["Female", "female"]] %>
+  </div>
+
   <% if current_page?('/providers/sign_up') %>
     <div class="field">
       <%= f.label :bio %><br />
