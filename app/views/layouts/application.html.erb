@@ -1,32 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Kaizme</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'>
+<link async href="http://fonts.googleapis.com/css?family=Anton" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"/>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="animate.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+  <title>Kaiz.You Talk.We Listen.</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
+  <header class="main-header bg-green">
+    <div class="container-fluid">
+      <div class="row">
+        <a class="header-logo pull-right icon-logo" href="/" id="navbar-logo"></a>
 
-  <p class="navbar-text pull-right">
-<% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-<% else %>
-  <%= link_to "Sign up Patient", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Sign up Provider", providers_sign_up_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-<% end %>
-<br>
-<% if flash[:notice] %>
+        <div class="main-nav pull-right"></div>
+
+    <% if user_signed_in? %>
+      Logged in as <strong><%= current_user.email %></strong>.
+      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+    <% else %>
+    <ul class="list-inline">
+    <%= link_to "Sign up Patient", new_user_registration_path, :class => 'navbar-link'  %>
+    <%= link_to "Sign up Provider", providers_sign_up_path, :class => 'navbar-link'  %> |
+    <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+    <% end %>
+    </ul>
+  </div>
+  </div>
+
+
+
+
+
+
+  <div class="container-fluid" id="top-section-background-color">
+    <div class="row">
+      <div class="col-xs-12">
+
+        <div class="col-xs-12 nopadding">
+          <nav class="navbar-fixed-top navbar navbar-default">
+      <%= link_to image_tag("") %>
+    <p class="navbar-text pull-right">
+
+
+
+      <br>
+    <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
-  <% end %>
-<br>
-
+     <% end %>
+      <br>
+        </nav>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
 
 
 <%= yield %>
 
 </body>
 </html>
+
+
+

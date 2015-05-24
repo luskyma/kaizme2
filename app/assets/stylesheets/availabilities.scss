@@ -1,3 +1,35 @@
-// Place all the styles related to the Availabilities controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.date input {
+    display: none;
+}
+
+.date span {
+    background-color: #CCCCCC;
+}
+
+ .date input:checked + span {
+    background-color: #00FFFF;
+}
+
+.time.blue {
+  background-color: blue;
+}
+
+.time {
+  background-color: gray;
+}
+
+.no-display input {
+    /*display: none;*/
+}
+
+span.timeblocks {
+    background-color: #CCCCCC;
+}
+
+.no-display input:checked + span {
+    background-color: #00FFFF;
+}
+.day {
+  float: left; margin-left: 10px;
+}
