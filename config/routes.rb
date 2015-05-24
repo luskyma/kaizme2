@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  get 'providers/find_a_provider'
+
   get 'dashboard/providers'
   get 'dashboard/patients'
 
-  get 'dashboard/find_a_provider'
   get 'dashboard/patient_profile'
   get 'dashboard/provider_profile'
 
