@@ -12,12 +12,6 @@ class AppointmentsController < ApplicationController
   def show
   end
 
-  # GET /appointments/new
-  def new
-    @provider = Provider.all
-    @appointment = Appointment.new
-  end
-
   def book
     # setting a specific provider to the patient
     current_user.patient.assign_provider(params[:provider_id])
@@ -27,7 +21,12 @@ class AppointmentsController < ApplicationController
     @patients_dr = User.find_by_id(current_user.patient.provider_id).provider
     # grabbing the @patients_dr availablities that the provider chose.
     @availabilities = @patients_dr.availabilities
-    binding.pry
+  end
+
+  # GET /appointments/new
+  def new
+    @appointment = Appointment.new
+    @appointment.book_appointment(@appointment, params[:availability], current_user.patient)
   end
 
   # GET /appointments/1/edit

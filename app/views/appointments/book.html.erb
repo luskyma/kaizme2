@@ -1,0 +1,3 @@
+<% @availabilities.each do |availability| %>
+  <%= link_to "#{availability.start}", new_appointment_path(availability: availability.id) %>
+<% end %>
