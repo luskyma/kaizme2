@@ -1,21 +1,5 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-4">
-  </div>
-
-</div>
-
-
-
-
-
-
-<% if current_user %>
-  Provider: <%= current_user.is_provider? %>
-  <br>
-  <% if current_user.is_provider %>
-    Provider: <%= current_user.provider %>
-    <% else %>
-    Patient: <%= current_user.patient.user.first_name %>
-  <% end %>
+<% unless current_user %>
+  <%= link_to('Login', new_user_session_path)  %>
 <% end %>
+
+<%= current_user.is_provider ? "Provider:#{current_user.first_name}" : "Patient:{ current_user.first_name" %>

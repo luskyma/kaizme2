@@ -24,51 +24,22 @@
 
         <div class="main-nav pull-right"></div>
 
-    <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-    <% else %>
-    <ul class="list-inline">
-    <%= link_to "Sign up Patient", new_user_registration_path, :class => 'navbar-link'  %>
-    <%= link_to "Sign up Provider", providers_sign_up_path, :class => 'navbar-link'  %> |
-    <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-    <% end %>
-    </ul>
-  </div>
-  </div>
-
-
-
-
-
-
-  <div class="container-fluid" id="top-section-background-color">
-    <div class="row">
-      <div class="col-xs-12">
-
-        <div class="col-xs-12 nopadding">
-          <nav class="navbar-fixed-top navbar navbar-default">
-      <%= link_to image_tag("") %>
-    <p class="navbar-text pull-right">
-
-
-
-      <br>
-    <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-     <% end %>
-      <br>
-        </nav>
+      <% if user_signed_in? %>
+        Logged in as <strong><%= current_user.email %></strong>.
+        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+      <% else %>
+      <ul class="list-inline">
+      <%= link_to "Sign up Patient", new_user_registration_path, :class => 'navbar-link'  %>
+      <%= link_to "Sign up Provider", providers_sign_up_path, :class => 'navbar-link'  %> |
+      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+      <% end %>
+      </ul>
     </div>
   </div>
-  </div>
+
 </div>
-</div>
-
-
-<%= yield %>
-
+  <%= yield %>
 </body>
 </html>
 
