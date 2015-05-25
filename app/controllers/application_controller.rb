@@ -6,4 +6,18 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     current_user.is_provider ? dashboard_providers_path : dashboard_patients_path
   end
+
+  def require_logged_in
+    return true if current_user
+    redirect_to root_path
+  end
+
+  def require_provider
+    return true if current_user.is_provider
+    redirect_to dashboard_patients_path
+  end
+
+  def require_patient
+    return true unless current_user.is_provider
+    redirect_to dashboard_providers_path
 end

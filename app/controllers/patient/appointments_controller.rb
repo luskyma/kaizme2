@@ -1,2 +1,2 @@
-class Patient::AppointmentsController < ApplicationController
+class Patient::AppointmentsController < Patient::BaseController
 end
