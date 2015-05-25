@@ -18,6 +18,7 @@
 
 
 $home-color: #50ca93;
+$signup-color: #4bbde3;
 
 /*
  * Globals
@@ -52,6 +53,35 @@ body {
 body {
   color: #FAFAFA;
   text-align: center;
+}
+
+#pages.signup {
+  background-color: $signup-color;
+
+}
+
+.ear {
+  width: 25px;
+
+}
+
+// Sign up page with boxes
+.option-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+  margin: 15px auto;
+  height: 45vh;
+  width: 80%;
+  border: 2px solid white;
+  text-align: center;
+}
+.option-container p {
+  color: white;
+  font-size: 1.15em;
+  text-align: center;
+  margin: 20px 0px;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
