@@ -20,4 +20,5 @@ class ApplicationController < ActionController::Base
   def require_patient
     return true unless current_user.is_provider
     redirect_to dashboard_providers_path
+  end
 end
