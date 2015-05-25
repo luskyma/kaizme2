@@ -16,6 +16,9 @@
 @import "bootstrap";
 @import "availabilities";
 
+
+$home-color: #50ca93;
+
 /*
  * Globals
  */
@@ -31,12 +34,11 @@ a:hover {
 .btn-default,
 .btn-default:hover,
 .btn-default:focus {
-  color: #333;
+  color: #000;
   text-shadow: none; /* Prevent inheritence from `body` */
   background-color: #fff;
   border: 1px solid #fff;
 }
-
 
 /*
  * Base structure
@@ -45,12 +47,11 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #333;
+  background-color: $home-color;
 }
 body {
-  color: #fff;
+  color: #FAFAFA;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -59,8 +60,7 @@ body {
   width: 100%;
   height: 100%; /* For at least Firefox */
   min-height: 100%;
-  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
-          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+
 }
 .site-wrapper-inner {
   display: table-cell;
