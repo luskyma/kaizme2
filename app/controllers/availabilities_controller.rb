@@ -77,6 +77,6 @@ class AvailabilitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def availability_params
-      params.require(:availability).permit(:provider_id, :start, :end)
+      params.require(:availability).permit(:provider_id, :start, :end, :patient_id)
     end
 end

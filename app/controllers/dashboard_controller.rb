@@ -6,7 +6,4 @@ class DashboardController < ApplicationController
   def providers
     @availabilities = Availability.by_provider(current_user.id)
   end
-
-  def find_a_provider
-  end
 end
