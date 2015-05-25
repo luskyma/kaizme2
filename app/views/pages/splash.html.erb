@@ -1,21 +1,16 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-4">
-  </div>
 
+<div class="inner cover">
+  <%= image_tag 'tod1.jpg', width: "110%" %>
+  <h1 class="cover-heading"></h1>
+
+  <p class="lead">Talk with a therapist anytime, anywhere.</p>
+  <p class="lead">
+    <a href="#" class="btn btn-lg btn-default">Use Tod free for 2 weeks</a>
+  </p>
 </div>
 
-
-
-
-
-
-<% if current_user %>
-  Provider: <%= current_user.is_provider? %>
-  <br>
-  <% if current_user.is_provider %>
-    Provider: <%= current_user.provider %>
-    <% else %>
-    Patient: <%= current_user.patient.user.first_name %>
-  <% end %>
-<% end %>
+<div class="mastfoot">
+  <div class="inner">
+    <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+  </div>
+</div>
