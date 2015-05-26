@@ -2,16 +2,17 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="option-container">
-
-        <button type="button" class="btn btn-primary btn-lg">
+      <%= embedded_svg "noun_69742_cc.svg", class: "talk" %>
+        <button type="button" class="btn btn-primary btn-lg outline">
         <%= link_to "I want to talk", new_user_registration_path, :class => 'navbar-link'  %>
         </button>
       </div>
     </div>
     <div class="col-sm-6">
       <div class="option-container">
-        <button type="button" class="btn btn-primary btn-lg">
-         <%= link_to "I'm a therapist", providers_sign_up_path, :class => 'navbar-link'  %>
+      <%= embedded_svg "ear.svg", class: "ear" %>
+        <button type="button" class="btn btn-primary btn-lg outline">
+         <%= link_to "I want to listen", providers_sign_up_path, :class => 'navbar-link'  %>
         </button>
       </div>
     </div>

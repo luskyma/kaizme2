@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'devise'
 
 gem 'bootstrap-sass'
+gem 'inline_svg'
 gem "opentok", "~> 2.2"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
