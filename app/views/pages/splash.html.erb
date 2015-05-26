@@ -1,18 +1,3 @@
-
-
-  <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-    <% else %>
-    <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-    <% end %>
-      <br>
-    <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-     <% end %>
-    <br>
-
 <div class="inner cover">
   <%= image_tag 'tod1.jpg', width: "110%" %>
   <h1 class="cover-heading"></h1>
@@ -25,7 +10,7 @@
 
 <div class="mastfoot">
   <div class="inner">
-    <p>Cover template for <a href="http://getbootstrap.com"> </a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+    <p>Made from people who care about people.</p>
   </div>
 </div>
 
