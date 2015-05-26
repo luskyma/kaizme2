@@ -14,8 +14,7 @@
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-
+@import "availabilities";
 
 $home-color: #50ca93;
 $signup-color: #4bbde3;
@@ -41,6 +40,36 @@ a:hover {
   border: 1px solid #fff;
 }
 
+.btn.outline {
+  background: none;
+  padding: 12px 22px;
+}
+
+.btn-primary.outline {
+  border: 2px solid #0099cc;
+  color: #0099cc
+}
+
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+    color: #33a6cc;
+    border-color: #33a6cc;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+    border-color: #007299;
+    color: #007299;
+    box-shadow: none;
+}
+
+.scheme-blue,
+.bg-hightlight,
+.btn {
+  background: #FFAB91;
+  color: white;
+  font-size: 16px;
+  font-weight: light;
+  text-transform: uppercase;
+}
+
 /*
  * Base structure
  */
@@ -60,9 +89,19 @@ body {
 
 }
 
-.ear {
-  width: 25px;
+.talk {
+  fill: #FAFAFA;
+  display: block;
+  margin: 0 auto;
+  height: 77%;
+  align: center;
+}
 
+.ear {
+  fill: #FAFAFA;
+  display: block;
+  margin: 0 auto;
+  height: 80%;
 }
 
 // Sign up page with boxes
@@ -139,7 +178,7 @@ body {
 .masthead-nav > .active > a,
 .masthead-nav > .active > a:hover,
 .masthead-nav > .active > a:focus {
-  color: #fff;
+  color: #000;
   border-bottom-color: #fff;
 }
 

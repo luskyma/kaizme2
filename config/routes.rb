@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   root 'pages#splash'
   get 'pages/signup', as: 'signup'
+  get 'pages/about', as: 'about'
 
 
    devise_scope :user do
