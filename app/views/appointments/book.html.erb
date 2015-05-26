@@ -1,3 +1,7 @@
+<h1>Book an Appointment</h1>
+
 <% @availabilities.each do |availability| %>
-  <%= link_to "#{availability.start}", new_appointment_path(availability: availability.id) %><br>
+  <% if Appointment.where(start: availability.start, end: availability.end, provider_id: availability.provider_id).empty? %>
+    <%= link_to "#{availability.start}", new_appointment_path(availability: availability.id) %><br>
+  <% end %>
 <% end %>

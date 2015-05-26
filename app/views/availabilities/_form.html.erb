@@ -4,7 +4,6 @@
   # assigns routing to dashboard through availability controller.
   @availability ||= Availability.new
 %>
-
 <% if @availability.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@availability.errors.count, "error") %> prohibited this availability from being saved:</h2>

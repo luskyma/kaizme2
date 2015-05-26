@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Appointments</h1>
+<h1>List of Appointments</h1>
 
 <table>
   <thead>
@@ -20,8 +20,6 @@
         <td><%= appointment.patient.user.email %></td>
         <td><%= appointment.start %></td>
         <td><%= appointment.end %></td>
-        <td><%= link_to 'Show', appointment %></td>
-        <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
         <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

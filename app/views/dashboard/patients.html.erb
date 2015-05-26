@@ -1,6 +1,8 @@
 <h1>Patient Dashboard</h1>
 
-<%= link_to "My Appointments", appointments_path %>
+<h2>My Appointments</h2>
+<!-- displays availability scheduler on the dashboard page -->
+<%= (render partial: 'appointments/form') %>
 <br>
 <p></p>
 <%= link_to "Find a Provider",  providers_find_a_provider_path %>

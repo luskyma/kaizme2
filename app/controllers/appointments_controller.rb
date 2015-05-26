@@ -18,7 +18,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
-    @availability = Availability.find_by_id params[:availability]
+    @availability = Availability.find_by_id params[:availability_id]
     @appointment = Appointment.create
     @appointment.book_appointment(@availability, current_user.patient)
 
@@ -62,6 +62,7 @@ class AppointmentsController < ApplicationController
   # DELETE /appointments/1
   # DELETE /appointments/1.json
   def destroy
+    @appointment = Appointment.find(params[:id])
     @appointment.destroy
     respond_to do |format|
       format.html { redirect_to appointments_url, notice: 'Appointment was successfully destroyed.' }
