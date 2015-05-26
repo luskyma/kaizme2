@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  namespace :patient do
+    resources :providers, :appointments
+  end
+
+  namespace :provider do
+    resources :patients, :availabilities, :appointments
+  end
+
   get 'providers/find_a_provider'
 
   get 'dashboard/providers'

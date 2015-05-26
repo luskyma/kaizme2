@@ -1,0 +1,2 @@
+module Patient::ProvidersHelper
+end

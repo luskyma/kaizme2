@@ -6,4 +6,14 @@
 <%= link_to "Find a Provider",  providers_find_a_provider_path %>
 <br>
 <p></p>
-<%= link_to "My Profile", dashboard_patient_profile_path %>
+
+
+
+
+<h3> My Profile </h3>
+
+<%= current_user.first_name %>
+<%= current_user.last_name %><br>
+<%= current_user.email %><br>
+<%= current_user.phone_number %><br>
+<%= link_to "Edit Profile", edit_user_registration_path %>
