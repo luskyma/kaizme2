@@ -1,6 +1,7 @@
 <%
   today = DateTime.current
   avails = @availabilities.to_a
+  @availability ||= Availability.new
 %>
 
 <% if @availability.errors.any? %>
