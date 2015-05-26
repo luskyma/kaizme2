@@ -1,6 +1,7 @@
 <%
   today = DateTime.current
   avails = @availabilities.to_a
+  # assigns routing to dashboard through availability controller.
   @availability ||= Availability.new
 %>
 

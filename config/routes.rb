@@ -8,11 +8,6 @@ Rails.application.routes.draw do
     resources :patients, :availabilities, :appointments
   end
 
-
-
-
-
-
   get 'providers/find_a_provider'
 
   get 'dashboard/providers'

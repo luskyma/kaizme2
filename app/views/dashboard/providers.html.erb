@@ -2,8 +2,14 @@
 
 <br>
 <p></p>
-<%= link_to "My Profile", dashboard_provider_profile_path %>
 
 <h2>Availability Scheduler</h2>
-
+<!-- displays availability scheduler on the dashboard page -->
 <%= (render partial: 'availabilities/form') %>
+
+<h3> My Profile </h3>
+
+<%= current_user.first_name %>
+<%= current_user.last_name %>
+<%= current_user.email %>
+<%= current_user.phone_number %>
