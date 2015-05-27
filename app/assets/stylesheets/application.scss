@@ -14,7 +14,7 @@
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+@import "availabilities";
 
 $home-color: #50ca93;
 $signup-color: #4bbde3;
@@ -80,6 +80,7 @@ body {
   background-color: $home-color;
 }
 body {
+  color: #FAFAFA;
   text-align: center;
 }
 
@@ -88,20 +89,50 @@ body {
 
 }
 
+// This is our splash page
+
+.tod-icon {
+  color: #FAFAFA;
+  height: 50%;
+}
+
+#heading {
+  font-family: Lato;
+  font-size: 71px;
+
+}
+
+.cover-heading {
+  font-size: 40px;
+  font-family: Lato;
+
+
+}
+
+// Sign up as provider or patient
+
 .talk {
   fill: #FAFAFA;
-  display: block;
-  margin: 0 auto;
-  height: 80%;
-  align: center;
+  padding: 0em;
+  height: 77%;
 }
 
 .ear {
   fill: #FAFAFA;
+  display: block;
   margin: 0 auto;
   height: 80%;
-  margin: 1.5em;
 }
+
+// About TOD page
+
+.todheading {
+  color: rgb(60, 202, 255);
+  font-weight: bold;
+  font-size: 24px;
+}
+
+
 
 // Sign up page with boxes
 .option-container {
