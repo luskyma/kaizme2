@@ -20,6 +20,10 @@ module Kaizme
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
+    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
+    config.time_zone = 'Eastern Time (US & Canada)'
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end
