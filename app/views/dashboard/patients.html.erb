@@ -6,7 +6,7 @@
 <table>
   <thead>
     <tr>
-      <th>Provider</th>
+      <th>Provider Name</th>
       <!-- <th>Patient</th> -->
       <th>Start</th>
       <th>End</th>
@@ -17,13 +17,17 @@
   <tbody>
     <% @appointments.each do |appointment| %>
       <tr>
-        <td><%= appointment.provider.user.email %></td>
+        <td><%= appointment.provider.user.first_name %></td>
+        <td><%= appointment.provider.user.last_name %></td>
+        <!-- <td><%#= appointment.provider.user.email %></td> -->
         <!-- <td><%#= appointment.patient.user.email %></td> -->
-        <td><%= appointment.start %></td>
-        <td><%= appointment.end %></td>
+        <td><%= appointment.start.strftime('%a, %b %d %I:%M %p') %></td>
+        <td><%= appointment.end.strftime('%a, %b %d %I:%M %p') %></td>
         <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
+
   </tbody>
 </table>
 <br>

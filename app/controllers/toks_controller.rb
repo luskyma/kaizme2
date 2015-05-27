@@ -1,6 +1,6 @@
 require "opentok"
 
-class TokController < ApplicationController
+class ToksController < ApplicationController
 # "API KEY", "API SECRET"
   @@opentok = OpenTok::OpenTok.new "45238082", "a62d3ab57b303a797049e5357d8851e16248dc32"
   def new
