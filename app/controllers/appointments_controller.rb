@@ -1,7 +1,11 @@
 class AppointmentsController < ApplicationController
 
   def index
-    @appointments = Appointment.for_patient(current_user.patient.id) || Appointment.for_provider(current_user.provider.id)
+    if current_user.is_provider
+      @appointments = Appointment.for_provider(current_user.provider.id)
+    else
+      @appointments = Appointment.for_patient(current_user.patient.id)
+    end
   end
 
   # GET /appointments/1
@@ -65,7 +69,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
     @appointment.destroy
     respond_to do |format|
-      format.html { redirect_to appointments_url, notice: 'Appointment was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Appointment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
