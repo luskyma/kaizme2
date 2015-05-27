@@ -80,7 +80,6 @@ body {
   background-color: $home-color;
 }
 body {
-  color: #FAFAFA;
   text-align: center;
 }
 
@@ -103,9 +102,12 @@ body {
 }
 
 .cover-heading {
-  font-size: 40px;
-  font-family: Lato;
+  font-size: 65px;
+  color: #FAFAFA;
+}
 
+.lead {
+  color: #FAFAFA;
 
 }
 
