@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
 
   def index
-    @appointments = Appointment.for_patient(current_user.patient.id)
+    @appointments = Appointment.for_patient(current_user.patient.id) || Appointment.for_provider(current_user.provider.id)
   end
 
   # GET /appointments/1
