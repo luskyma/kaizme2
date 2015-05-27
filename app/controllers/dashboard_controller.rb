@@ -5,5 +5,6 @@ class DashboardController < ApplicationController
 
   def providers
     @availabilities = Availability.by_provider(current_user.id)
+    @appointments = Appointment.for_provider(current_user.id)
   end
 end

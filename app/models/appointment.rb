@@ -3,6 +3,7 @@ class Appointment < ActiveRecord::Base
   belongs_to :patient
 
   scope :for_patient, ->(user_id) { Appointment.where patient_id: user_id }
+  scope :for_provider, ->(user_id) { Appointment.where provider_id: user_id }
 
   def book_appointment availability, patient
     update_attribute :provider_id, availability.provider_id

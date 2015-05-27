@@ -2,6 +2,8 @@
 
 <% @availabilities.each do |availability| %>
   <% if Appointment.where(start: availability.start, end: availability.end, provider_id: availability.provider_id).empty? %>
-    <%= link_to "#{availability.start}", new_appointment_path(availability: availability.id) %><br>
+    <%= link_to "#{availability.start}", new_appointment_path(availability_id: availability.id) %><br>
   <% end %>
 <% end %>
+<%= link_to 'Back to Dashboard', dashboard_patients_path %><br>
+<%= link_to 'Back to Providers', :back %>

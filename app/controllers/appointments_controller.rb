@@ -22,7 +22,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.create
     @appointment.book_appointment(@availability, current_user.patient)
 
-    redirect_to appointments_path
+    redirect_to :back
   end
 
   # GET /appointments/1/edit
