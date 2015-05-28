@@ -13,7 +13,8 @@ class ToksController < ApplicationController
     @session = Session.create(session_id: session.session_id, open: true, appointment: @appointment)
     @session.save
 
-    render json: @session
+
+    render json: tok_view_path(@session).to_s, status: :ok
   end
 
   def create

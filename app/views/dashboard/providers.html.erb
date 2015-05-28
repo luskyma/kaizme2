@@ -40,7 +40,7 @@
        <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <!-- Uses Rails Unobtrusive Javascript to get 'Tok/new' with the appointment id -->
         <td><% if !appointment.session %>
-          <%= link_to "Start Session",  tok_new_path(appointment_id: appointment.id), remote: true %>
+          <%= link_to "Start Session",  tok_new_path(appointment_id: appointment.id), method: 'post',remote: true %>
         <% end %></td>
         <td><% if appointment.session %>
           <%= link_to "Join Session",  tok_view_path(appointment.session) %>

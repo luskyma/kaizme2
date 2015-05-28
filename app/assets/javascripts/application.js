@@ -18,6 +18,11 @@
 
 function ready() {
 
+  $("a[data-remote]").on("ajax:complete", function(e, data, status, xhr){
+          console.log(data);
+          Turbolinks.visit(data.responseText);
+    });
+
   // When the input is changed do something.
 
   $('input.avail').change(function() {
@@ -82,6 +87,8 @@ function ready() {
     }
   });
 }
+
+
 
 $(ready);
 $(document).on('page:load', ready);

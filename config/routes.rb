@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   get 'tok/:id' => 'toks#view', as: 'tok_view'
   get 'tok/:id/close' => 'toks#close'
   get 'tok/new' => 'toks#new'
+  post 'tok/new' => 'toks#new'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
