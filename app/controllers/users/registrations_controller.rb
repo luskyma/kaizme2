@@ -1,6 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
-
+def after_update_path_for(resource)
+    current_user.is_provider ? dashboard_providers_path : dashboard_patients_path
+  end
 
 private
 
