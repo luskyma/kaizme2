@@ -9,8 +9,8 @@ class ToksController < ApplicationController
     session = @@opentok.create_session :media_mode => :routed
     # Store this sessionId in the database for later use:
     session_id = session.session_id
-
-    @session = Session.create(session_id: session.session_id, open: true)
+    @appointment = Appointment.find(params[:appointment_id])
+    @session = Session.create(session_id: session.session_id, open: true, appointment: @appointment)
     @session.save
 
     render json: @session

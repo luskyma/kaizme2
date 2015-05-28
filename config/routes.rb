@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     get 'tok/:session_id/token' => 'toks#token'
   end
 
-  get 'tok/:id' => 'toks#view'
+  get 'tok/:id' => 'toks#view', as: 'tok_view'
   get 'tok/:id/close' => 'toks#close'
   get 'tok/new' => 'toks#new'
 
