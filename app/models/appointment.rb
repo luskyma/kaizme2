@@ -1,6 +1,7 @@
 class Appointment < ActiveRecord::Base
   belongs_to :provider
   belongs_to :patient
+  has_one :session
 
   scope :for_patient, ->(user_id) { Appointment.where patient_id: user_id }
   scope :for_provider, ->(user_id) { Appointment.where provider_id: user_id }
