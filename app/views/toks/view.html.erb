@@ -9,7 +9,7 @@ $(function() {
   var userType = "<%= @userType %>"; // either 'provider' or 'patient'
 
   var jqxhr = $.ajax({
-    url: "/session/" + sessionId + "/token.json",
+    url: "/tok/" + sessionId + "/token.json",
     type: "GET",
     async: false,
     dataType: 'json'
@@ -88,8 +88,6 @@ function initialize(sessionId, token, userType) {
   $(window).unload(function() {
     session.disconnect();
   });
-
-
 
 
   // Text Chat

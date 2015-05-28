@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get 'tok/all' => 'toks#all'
 
   scope :format => true, :constraints => { :format => 'json' } do
-    get 'tok/:tok_id/token' => 'toks#token'
+    get 'tok/:session_id/token' => 'toks#token'
   end
 
   get 'tok/:id' => 'toks#view'
