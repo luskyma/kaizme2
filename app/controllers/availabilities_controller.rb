@@ -1,4 +1,6 @@
 class AvailabilitiesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :require_provider
   before_action :set_availability, only: [:show, :edit, :update, :destroy]
 
   # GET /availabilities
