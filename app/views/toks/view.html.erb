@@ -113,35 +113,28 @@ function initialize(sessionId, token, userType) {
 };
 
 </script>
-<div class="row">
-  <div id="videos">
-    <div class="col-xs-6">
-      <span class="provider-name">Provider</span>
-      <div id="provider"></div>
-    </div>
-    <div class="col-xs-6">
-      <span class="patient-name">Patient</span>
-      <div id="patient"></div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1" id="textchat"></div>
-</div>
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1" id="history"></div>
-</div>
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1">
-    <form>
-      <input type="text" placeholder="Write your message here" id="msgTxt"></input>
-    </form>
-  </div>
-</div>
-<div class="row">
-  <%= link_to "End Session", "/session/index", :id => "end-session", method: :get %>
-</div>
 
+<!-- This fixed the bad modal situation -->
+<p><%= link_to "Index", "/session/index", :id => "end-session", method: :get %></p>
+  <div id="videos">
+
+        Provider
+        <div id="provider"></div>
+
+        Patient
+        <div id="patient"></div>
+
+  </div>
+
+ <div id="textchat">
+
+ <div id="history"></div>
+
+        <form>
+
+        <input type="text" placeholder="Write your message here" id="msgTxt"></input>
+
+        </form>
 
 
 
