@@ -15,26 +15,26 @@
     </ul>
   </div>
 <% end %>
-<hr>
-<% (0..6).each do |day| %>
-  <div class="day col-md-1">
-    <% this_day = today.beginning_of_week + day.days %>
-    <span class="date"><%= this_day.strftime('%A') %></span>
-    <p><%= this_day.strftime('%B %d') %></p>
-    <% 6.upto(20) do |hour| %>
-      <div>
-        <span class="time">
-          <%
-            this_datetime = this_day.to_datetime.change(hour: hour)
-            availability = avails.find { |a| a.start == this_datetime }
-            checked = !availability.nil?
-          %>
-          <%= this_datetime.strftime('%I:%M %p') %>
-          <%= check_box_tag this_datetime.to_s, this_datetime.to_s, checked, class: "avail", data: {availability:  (checked ? availability.id : '') } %>
-        </span>
-      </div>
-    <% end %>
-  </div>
-<%end %>
-
+<div class="calendar">
+  <% (0..6).each do |day| %>
+    <div class="day col-xs-1">
+      <% this_day = today.beginning_of_week + day.days %>
+      <span class="date"><%= this_day.strftime('%A') %></span>
+      <p><%= this_day.strftime('%B %d') %></p>
+      <% 6.upto(20) do |hour| %>
+        <div>
+          <span class="time">
+            <%
+              this_datetime = this_day.to_datetime.change(hour: hour)
+              availability = avails.find { |a| a.start == this_datetime }
+              checked = !availability.nil?
+            %>
+            <%= this_datetime.strftime('%I:%M %p') %>
+            <%= check_box_tag this_datetime.to_s, this_datetime.to_s, checked, class: "avail", data: {availability:  (checked ? availability.id : '') } %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+  <%end %>
+</div>
 
