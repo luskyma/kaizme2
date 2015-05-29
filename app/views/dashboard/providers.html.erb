@@ -2,19 +2,14 @@
 
 <br>
 <p></p>
+<!-- <h3> My Profile </h3> -->
 
-<h2>Availability Scheduler</h2>
-<!-- displays availability scheduler on the dashboard page -->
-<%= (render partial: 'availabilities/form') %>
-
-<h3> My Profile </h3>
-
-<%= current_user.first_name %>
-<%= current_user.last_name %><br>
-<%= current_user.email %><br>
-<%= current_user.phone_number %><br>
+<%#= current_user.first_name %>
+<!-- <%#= current_user.last_name %><br> -->
+<!-- <%#= current_user.email %><br> -->
+<!-- <%#= current_user.phone_number %><br> -->
 <%#= link_to "Edit Profile", edit_user_registration_path %>
-<h3> Upcoming Appointments </h3>
+<h2> Upcoming Appointments </h2>
 <table>
   <thead>
     <tr>
@@ -36,7 +31,7 @@
         <td><%= appointment.start.strftime('%a, %b %d %I:%M %p') %></td>
         <td><%= appointment.end.strftime('%a, %b %d %I:%M %p') %></td>
       </tr>
-       <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       <td><%= link_to 'Cancel', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <!-- Uses Rails Unobtrusive Javascript to get 'Tok/new' with the appointment id -->
         <td><% if !appointment.session %>
           <%= link_to "Start Session",  tok_new_path(appointment_id: appointment.id), method: 'post',remote: true %>
@@ -69,5 +64,9 @@
     <% end %>
   </tbody>
 </table>
-<h3> Tod Talk </h3>
+<h2>Availability Scheduler</h2>
+<!-- displays availability scheduler on the dashboard page -->
+<%= (render partial: 'availabilities/form') %>
+
+<!-- <h3> Tod Talk </h3> -->
 
