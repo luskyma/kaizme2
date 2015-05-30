@@ -1,28 +1,9 @@
 <h1>Provider Dashboard</h1>
 
 <br>
-<p></p>
-<!-- <h3> My Profile </h3> -->
 
-<%#= current_user.first_name %>
-<!-- <%#= current_user.last_name %><br> -->
-<!-- <%#= current_user.email %><br> -->
-<!-- <%#= current_user.phone_number %><br> -->
-<%#= link_to "Edit Profile", edit_user_registration_path %>
-<h2> Upcoming Appointments </h2>
-<table>
-  <thead>
-    <tr>
-      <!-- <th>Provider</th> -->
-      <th>Patient</th>
-      <th>Email</th>
-      <th>Start</th>
-      <th>End</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-          <!-- Below we have the working scheduler for managing appointments -->
+<!-- Below we have the working scheduler for managing appointments -->
+
 <div class="row">
   <div class="col-lg-6 col-lg-offset-3">
   <div class="panel panel-default">
@@ -38,7 +19,6 @@
           <%= appointment.patient.user.first_name %>
           <%= appointment.patient.user.last_name %>
           <%= appointment.start.strftime('%a, %b %d %I:%M %p') %>
-          <%= appointment.end.strftime('%a, %b %d %I:%M %p') %>
         </p>
         <p>
           <% if appointment.session %>
@@ -57,11 +37,22 @@
   </div>
   </div>
 </div>
-
-<h2>Availability Scheduler</h2>
 <!-- displays availability scheduler on the dashboard page -->
-<%= (render partial: 'availabilities/form') %>
 
 
-<!-- <h3> Tod Talk </h3> -->
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>  Availability Scheduler
+        </h3>
+          <div class="panel-body">
+              <%= (render partial: 'availabilities/form') %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 

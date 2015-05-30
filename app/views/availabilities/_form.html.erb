@@ -15,26 +15,51 @@
     </ul>
   </div>
 <% end %>
+
 <div class="calendar">
   <% (0..6).each do |day| %>
-    <div class="day col-xs-1">
+    <div class="day ">
       <% this_day = today.beginning_of_week + day.days %>
-      <span class="date"><%= this_day.strftime('%A') %></span>
-      <p><%= this_day.strftime('%B %d') %></p>
-      <% 6.upto(20) do |hour| %>
-        <div>
-          <span class="time">
-            <%
-              this_datetime = this_day.to_datetime.change(hour: hour)
-              availability = avails.find { |a| a.start == this_datetime }
-              checked = !availability.nil?
-            %>
-            <%= this_datetime.strftime('%I:%M %p') %>
-            <%= check_box_tag this_datetime.to_s, this_datetime.to_s, checked, class: "avail", data: {availability:  (checked ? availability.id : '') } %>
-          </span>
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#<%= this_day.strftime('%Y%m%d') %>" aria-expanded="true" aria-controls="collapseOne">
+                <span class="date"><%= this_day.strftime('%A %B %d') %></span>
+              </a>
+            </h4>
+          </div>
+          <div id="<%= this_day.strftime('%Y%m%d') %>" class="panel-collapse collapsed collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+
+              <% 6.upto(20) do |hour| %>
+                <div>
+                  <span class="time">
+                  <%
+                    this_datetime = this_day.to_datetime.change(hour: hour)
+                    availability = avails.find { |a| a.start == this_datetime }
+                    checked = !availability.nil?
+                  %>
+                  <%= this_datetime.strftime('%I:%M %p') %>
+                  <%= check_box_tag this_datetime.to_s, this_datetime.to_s, checked, class: "avail", data: {availability:  (checked ? availability.id : '') } %>
+                  </span>
+                </div>
+            <% end %>
+
+            </div>
+          </div>
         </div>
-      <% end %>
+      </div>
+
+
+
+
+
     </div>
-  <%end %>
+  <% end %>
 </div>
+
+
+
+
 
