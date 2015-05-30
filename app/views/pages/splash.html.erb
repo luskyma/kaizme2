@@ -1,25 +1,84 @@
 <!-- Front page -->
 
+<div class="container-fluid">
+<section id="front" data-speed="10" data-type="background">
+ <%= image_tag 'TODNEW.svg', width: "70%", :class => "todnew" %>
 
-<div class="inner cover">
-<!-- Tod Icon at Front -->
-  <%= image_tag 'tod_icon.svg', width: "70%" %>
-  <!-- Tod motto -->
-  <h1 class="cover-heading">Therapist on Demand</h1>
+<!-- Heading -->
 
-  <p class="lead">Talk with a therapist anytime, anywhere.</p>
+<section class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-right navicon">
+        <a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center inner">
+                  <h1 class="animated fadeInDown"><span>Therapist on Demand</span></h1>
+                </div>
+              </div>
+  </div>
+</section>
 
-  <p class="lead">
-    <a href="#" class="btn btn-lg btn-default">Sign Up Now</a>
-  </p>
+          <p class="lead">Talk with a therapist anytime, anywhere.</p>
+          <p class="lead">
+            <a href="#" class="button">Sign Up Now</a>
+          </p>
+</section>
+ </div>
+<!-- Section 1 after front page -->
+<section id="home" data-speed="10" data-type="background">
 
-</div>
+</section>
 
-<div class="mastfoot">
-    <p>Made from people who care about people.</p>
-</div>
+<!-- Section 2 -->
+      <section id="why" data-speed="4" data-type="background">
+      <article>I am Absolute Positioned</article>
+      </section>
+
+<!-- Section 3 -->
+      <section id="about" data-speed="3" data-type="background">
+      <article>
+
+          <div class="section-about section bg-alt">
+          <div class="container-fluid" style="opacity: 1;">
+          <h1 class="todheading">How does Tod work?</h1>
+          <div class="row">
+            <div class="col-md-4">
+            <div class="option-container">
+              <%= embedded_svg "fillform.svg", class: "fillform", height: "20%", weight: "20%" %>
+              <p>1. Sign up</p>
+            </div>
+            </div>
+            <div class="col-md-4">
+             <div class="option-container">
+              <%= embedded_svg "24hours_time.svg", class: "hours", height: "20%", weight: "20%" %>
+              <p>2. Book an appt</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+            <div class="option-container">
+              <%= embedded_svg "tod_icon.svg", class: "tod-icon", height: "22%", weight: "20%" %>
+              <p>3. Join video call with therapist</p>
+            </div>
+            </div>
+          </div>
+        </div>
 
 
+      </article>
+      </section>
+
+      <section id="contact" data-speed="6" data-type="background">
+      <article>
+        <div class="mastfoot">
+          <p>Made from people who care about people.</p>
+        </div>
+
+      </article>
+
+      </section>
 
 
 

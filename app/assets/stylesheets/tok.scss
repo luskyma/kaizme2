@@ -1,0 +1,30 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+#videos {
+  width: 300%;
+  height: 300%;
+}
+
+
+#msgTxt {
+   margin-top: 30px;
+   width: 50%;
+}
+
+#history {
+   height: 200px;
+   margin-top: 400px;
+   background-color: white;
+   overflow-y: scroll;
+   border-radius: 5px;
+   border-color: black;
+   padding: 50px;
+}
+
+#provider{
+  position:absolute;
+  left:500px;
+}

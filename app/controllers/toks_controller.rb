@@ -69,6 +69,5 @@ class ToksController < ApplicationController
     else
       @userType = 'patient'
     end
-    render layout: 'tok_layout'
   end
 end

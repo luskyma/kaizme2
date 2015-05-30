@@ -15,9 +15,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "availabilities";
+@import "tok";
+@import url("http://fonts.googleapis.com/css?family=Lato");
 
-$home-color: #50ca93;
-$signup-color: #4bbde3;
+// $home-color: #50ca93;
+// $signup-color: #4bbde3;
 
 /*
  * Globals
@@ -60,14 +62,47 @@ a:hover {
     box-shadow: none;
 }
 
-.scheme-blue,
-.bg-hightlight,
-.btn {
-  // background: #FFAB91;
-  color: white;
-  font-size: 14px;
-  font-weight: light;
+
+.button {
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:50px;
+  font-size:1.0em;
+  padding:0 1.5em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
 }
+.button:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+.button:before,
+.button:after {
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+.button:after {
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+
+.button:hover:before,
+.button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
 
 /*
  * Base structure
@@ -76,14 +111,23 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: $home-color;
+  // background-color: $home-color;
 }
 body {
+  background: asset_url('alen.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
   text-align: center;
 }
 
+.todnew {
+    margin-top: 150px;
+
+}
+
 #pages.signup {
-  background-color: $signup-color;
+  // background-color: $signup-color;
 
 }
 
@@ -128,7 +172,7 @@ body {
 // About TOD page
 
 .todheading {
-  color: rgb(60, 202, 255);
+  color: white;
   font-weight: bold;
   font-size: 24px;
 }
@@ -279,6 +323,62 @@ body {
     width: 700px;
   }
 }
+
+//new css
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#home, #why, #about, #contact {
+  max-width: 100%;
+}
+
+#home {
+  background: #50ca93 50% 0 no-repeat fixed;
+  height: 1000px;
+  margin: auto;
+    width: 100%;
+    max-width: 1920px;
+    position: relative;
+}
+
+#why {
+  background: #CC0000 50% 0 no-repeat fixed;
+  height: 1000px;
+  margin: auto;
+    width: 100%;
+    max-width: 1920px;
+    position: relative;
+}
+
+#about {
+  background: #0CCFF1 50% 0 no-repeat fixed;
+  height: 1000px;
+  margin: auto;
+    width: 100%;
+    max-width: 1920px;
+    position: relative;
+}
+
+#contact {
+  background: #A2B3C4 50% 0 no-repeat fixed;
+  height: 1000px;
+  margin: auto;
+    width: 100%;
+    max-width: 1920px;
+    position: relative;
+}
+
+
+//Front page heading
+
+.hero { background: #d73930; padding: 65px 0 100px 0; height:auto;}
+.hero h1 { font-size: 70px; letter-spacing: 6px; margin: 150px 10px 150px 10px; font-family: 'Lato', cursive; letter-spacing: initial;}
+.hero h1 span, .hero p { color: #fafafa; display: inline-block; }
+.hero p { letter-spacing: 1px; }
+
 
 // Dashboard Providers
 
