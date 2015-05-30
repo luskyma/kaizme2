@@ -31,11 +31,26 @@ function initialize(sessionId, token, userType) {
   var session = OT.initSession(apiKey, sessionId);
 
   console.log(apiKey);
-  console.log('session_setup', session)
+  console.log('session_setup', session);
+
+
+  subscriberSettings = {
+    width: '100%',
+    height: '90vh'
+  };
+
+  publisherSettings = {
+    name: "<%= current_user.first_name %>",
+    width: "177px",
+    height: "100px"
+  };
+
 
   session.connect(token, function(error) {
-    var publisher = OT.initPublisher(userType);
+
+    var publisher = OT.initPublisher('publisher', publisherSettings);
     // console.log('connect publish');
+
     session.publish(publisher);
 
     //TODO: move #OT_143cad9c_545e_4e72_b16d_76231405e530 to #publisher
@@ -56,7 +71,7 @@ function initialize(sessionId, token, userType) {
 
     // This function runs when another client publishes a stream (eg. session.publish())
     streamCreated: function(event) {
-      var divID = userType === 'provider' ? 'patient' : 'provider';
+      var divID = "subscriber";
 
       console.log('session_created', session)
       // Create a container for a new Subscriber, assign it an id using the streamId, put it inside
@@ -66,11 +81,11 @@ function initialize(sessionId, token, userType) {
 
       // first time through, target publisher
       console.log('not subscriber connected');
-      console.log(document.getElementById(divID))
+      console.log(document.getElementById(divID));
       document.getElementById(divID).appendChild(subContainer);
 
       // Subscribe to the stream that caused this event, put it inside the container we just made
-      session.subscribe(event.stream, subContainer);
+      session.subscribe(event.stream, subContainer, subscriberSettings);
     },
     // Receive a message and append it to the history
     'signal:chat': function(event) {
@@ -118,23 +133,21 @@ function initialize(sessionId, token, userType) {
 <p><%= link_to "Index", "/session/index", :id => "end-session", method: :get %></p>
   <div id="videos">
 
-        Provider
-        <div id="provider"></div>
-        Patient
-        <div id="patient"></div>
+  <div id="subscriber"></div>
+  <div id="publisher"></div>
 
   </div>
 
 
- <div id="textchat">
+ <div id="textchat"></div>
 
  <div id="history"></div>
 
-        <form>
+<form>
 
-        <input type="text" placeholder="Write your message here" id="msgTxt"></input>
+<input type="text" placeholder="Write your message here" id="msgTxt">
 
-        </form>
+</form>
 
 
 
