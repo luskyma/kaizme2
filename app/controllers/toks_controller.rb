@@ -63,11 +63,5 @@ class ToksController < ApplicationController
       redirect_to action: "index"
       return
     end
-
-    if (current_user.is_provider)
-      @userType = 'provider'
-    else
-      @userType = 'patient'
-    end
   end
 end
