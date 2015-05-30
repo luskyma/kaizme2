@@ -24,7 +24,7 @@
           <% if appointment.session %>
             <%= link_to "Join Session", tok_view_path(appointment.session), class: 'btn btn-xs btn-success' %>
             <% else %>
-            <%= link_to "Start Session",  tok_new_path(appointment_id: appointment.id), class: 'btn btn-xs btn-success' %>
+            <%= link_to "Start Session",  tok_new_path(appointment_id: appointment.id), class: 'btn btn-xs btn-success', method: 'get', remote: true %>
           <% end %>
            <%= link_to 'Cancel', appointment, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure you want to cancel this appointment?' } %>
         </p>
