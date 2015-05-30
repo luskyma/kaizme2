@@ -22,51 +22,46 @@
     </tr>
   </thead>
   <tbody>
+          <!-- Below we have the working scheduler for managing appointments -->
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+    <h3 class="panel-title">
+    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>  Appointments
+    </h3>
+    </div>
+    <div class="panel-body">
     <% @appointments.each do |appointment| %>
-      <tr>
-        <!-- <td><%#= appointment.provider.user.email %></td> -->
-        <td><%= appointment.patient.user.first_name %></td>
-        <td><%= appointment.patient.user.last_name %></td>
-        <td><%= appointment.patient.user.email %></td>
-        <td><%= appointment.start.strftime('%a, %b %d %I:%M %p') %></td>
-        <td><%= appointment.end.strftime('%a, %b %d %I:%M %p') %></td>
-      </tr>
-       <td><%= link_to 'Cancel', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <!-- Uses Rails Unobtrusive Javascript to get 'Tok/new' with the appointment id -->
-        <td><% if !appointment.session %>
-          <%= link_to "Start Session",  tok_new_path(appointment_id: appointment.id), method: 'post',remote: true %>
-        <% end %></td>
-        <td><% if appointment.session %>
-          <%#= link_to "Join Session",  tok_view_path(appointment.session) %>
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal<%=appointment.id%>">
-            Join Session
-          </button>
-          <!-- Modal -->
-         <!--  <!-- This didn't give us what what we wanted -->
-          <!-- <div class="modal fade" id="myModal<%=appointment.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel"><%= appointment.patient.user.first_name %></h4>
-                </div>
-                <div class="modal-body" style="height:400px; padding:0px;">
-                  <iframe src="<%= tok_view_path(appointment.session)%>" width=590 height=400 frameborder="0"></iframe>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div> -->
-        <% end %></td>
+      <div class="text-center">
+        <p>
+          <%= appointment.patient.user.first_name %>
+          <%= appointment.patient.user.last_name %>
+          <%= appointment.start.strftime('%a, %b %d %I:%M %p') %>
+          <%= appointment.end.strftime('%a, %b %d %I:%M %p') %>
+        </p>
+        <p>
+          <% if appointment.session %>
+            <%= link_to "Join Session", tok_view_path(appointment.session), class: 'btn btn-xs btn-success' %>
+            <% else %>
+            <%= link_to "Start Session",  tok_new_path(appointment_id: appointment.id), class: 'btn btn-xs btn-success' %>
+          <% end %>
+           <%= link_to 'Cancel', appointment, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure you want to cancel this appointment?' } %>
+        </p>
+      </div>
     <% end %>
-  </tbody>
-</table>
+        <% if @appointments.blank? %>
+         <p> You have no appointments.</p>
+        <% end %>
+  </div>
+  </div>
+  </div>
+</div>
+
 <h2>Availability Scheduler</h2>
 <!-- displays availability scheduler on the dashboard page -->
 <%= (render partial: 'availabilities/form') %>
+
 
 <!-- <h3> Tod Talk </h3> -->
 
