@@ -82,7 +82,8 @@ function initialize(sessionId, token, name) {
     // Receive a message and append it to the history
     'signal:chat': function(event) {
       var msg = document.createElement('p');
-      msg.innerHTML = event.data;
+      console.dir(event)
+      msg.innerHTML = event.data.name + ": " + event.data.msg;
       msg.className = event.from.connectionId === session.connection.connectionId ? 'mine' : 'theirs';
       document.querySelector('#history').appendChild(msg);
       msg.scrollIntoView();
@@ -107,7 +108,10 @@ function initialize(sessionId, token, name) {
 
     session.signal({
       type: 'chat',
-      data: msgTxt.value
+      data: {
+        name: name,
+        msg: msgTxt.value
+      }
     }, function(error) {
       if (!error) {
         msgTxt.value = '';

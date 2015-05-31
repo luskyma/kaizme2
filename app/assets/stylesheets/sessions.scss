@@ -9,3 +9,41 @@
   margin-top: -120px;
   margin-right: 20px;
 }
+
+#subscriber {
+  height: 90vh;
+  background: black;
+}
+
+
+#msgTxt {
+  width: 170px;
+  font-family: "Helvetica Neue", Arial;
+  color: gray;
+
+}
+
+#history {
+  font-family: "Helvetica Neue", Arial;
+  color: gray;
+}
+
+
+.conversation {
+  display: flex;
+  list-style: none;
+  background: #FAFAFA;
+  margin: auto;
+  padding: 0 0 50px 0;
+  height: 400px;
+  overflow-y: auto;
+  border-radius: 4px;
+  border-color: black;
+}
+// .avatar {
+//   width: 40px;
+// }
+// .avatar img {
+//   width: 100%;
+//   display: block;
+// }
