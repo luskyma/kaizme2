@@ -16,6 +16,9 @@
 @import "bootstrap";
 @import "availabilities";
 @import "sessions";
+@import url(http://fonts.googleapis.com/css?family=Robato);
+@import "animate";
+
 $home-color: #50ca93;
 $signup-color: #4bbde3;
 
@@ -59,7 +62,8 @@ $signup-color: #4bbde3;
 
 // Sign up splash button
 .btn-tod-splash {
-  @include button-variant(#FAFAFA, #fea978, #fea978)
+  @include button-variant(#FAFAFA, #fea978, #fea978);
+  animation-delay: 0.75s;
 
 }
 
@@ -83,9 +87,10 @@ body {
 
 // This is our splash page
 
-.tod-icon {
+.main-logo {
   color: #FAFAFA;
-  height: 50%;
+  height: 100%;
+  animation-delay: 0.5s;
 }
 
 #heading {
@@ -97,10 +102,13 @@ body {
 .cover-heading {
   font-size: 45px;
   color: #FAFAFA;
+  font-family:  Oswald Normal 400;
+
 }
 
 .lead {
   color: #FAFAFA;
+  animation-delay: 0.5s;
 
 }
 
@@ -176,8 +184,20 @@ body {
 .masthead-brand {
   margin-top: 10px;
   margin-bottom: 10px;
+<<<<<<< HEAD
   font-size: 30px;
 
+=======
+  > a {
+    color: #FAFAFA;
+    font-size: 30px;
+    text-decoration: none;
+    &:hover{
+      color: rgba(255,255,255,0.5);
+      transition: color 0.5s;
+    }
+  }
+>>>>>>> 405e4ace97081f1c782db715d1297d5e7114c3ff
 }
 
 .masthead-nav > li {
@@ -187,19 +207,20 @@ body {
   margin-left: 20px;
 }
 .masthead-nav > li > a {
-  padding-right: 0;
-  padding-left: 0;
   font-size: 16px;
   font-weight: bold;
   color: #FAFAFA; /* IE8 proofing */
   color: rgba(255,255,255,.75);
-  border-bottom: 2px solid transparent;
+  border: 2px solid transparent;
+  padding: 5px 10px;
+
 }
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
   background-color: transparent;
   border-bottom-color: #a9a9a9;
-  border-bottom-color: rgba(255,255,255,.25);
+  border-color: rgba(255,255,255,.75);
+
 }
 .masthead-nav > .active > a,
 .masthead-nav > .active > a:hover,
@@ -272,6 +293,7 @@ body {
   .mastfoot,
   .cover-container {
     width: 700px;
+
   }
 }
 
