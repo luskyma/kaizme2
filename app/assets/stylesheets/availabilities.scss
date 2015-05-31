@@ -14,12 +14,20 @@
   background-color: blue;
 }
 
-.time {
-  background-color: gray;
+.time:hover {
+  background-color: white;
+  font-size: 19px;
+}
+
+.panel-title {
+  font-size: 22px
 }
 
 .no-display input {
     /*display: none;*/
+}
+span.date {
+  font-size: 18px;
 }
 
 span.timeblocks {
