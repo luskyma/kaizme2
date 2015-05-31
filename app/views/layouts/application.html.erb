@@ -26,19 +26,18 @@
       </button>
 
       <% if !current_user.nil? %>
-        <% if current_user.is_provider%>
-        <%= link_to 'Tod', dashboard_providers_path, class: "navbar-brand" %>
+          <% if current_user.is_provider %>
+          <%= link_to 'Tod', dashboard_providers_path, class: "navbar-brand" %>
+          <% else %>
+          <%= link_to 'Tod', dashboard_patients_path, class: "navbar-brand" %>
+          <% end %>
         <% else %>
-        <%= link_to 'Tod', dashboard_patients_path, class: "navbar-brand" %>
-        <% end %>
-        <% else %>
-        <%= link_to 'Tod', root_path, class: "navbar-brand" %>
+        <% link_to 'Tod', root_path, class: "navbar-brand" %>
       <% end %>
 
 
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li class="dropdown">
