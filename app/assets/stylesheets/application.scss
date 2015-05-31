@@ -17,6 +17,7 @@
 @import "availabilities";
 @import "sessions";
 @import url(http://fonts.googleapis.com/css?family=Robato);
+@import "animate";
 
 $home-color: #50ca93;
 $signup-color: #4bbde3;
@@ -61,7 +62,8 @@ $signup-color: #4bbde3;
 
 // Sign up splash button
 .btn-tod-splash {
-  @include button-variant(#FAFAFA, #fea978, #fea978)
+  @include button-variant(#FAFAFA, #fea978, #fea978);
+  animation-delay: 0.75s;
 
 }
 
@@ -88,6 +90,7 @@ body {
 .main-logo {
   color: #FAFAFA;
   height: 100%;
+  animation-delay: 0.5s;
 }
 
 #heading {
@@ -100,14 +103,14 @@ body {
   font-size: 45px;
   color: #FAFAFA;
   font-family:  Oswald Normal 400;
+
 }
 
 .lead {
   color: #FAFAFA;
+  animation-delay: 0.5s;
 
 }
-
-
 
 // Sign up as provider or patient
 
@@ -181,6 +184,15 @@ body {
 .masthead-brand {
   margin-top: 10px;
   margin-bottom: 10px;
+  > a {
+    color: #FAFAFA;
+    font-size: 30px;
+    text-decoration: none;
+    &:hover{
+      color: rgba(255,255,255,0.5);
+      transition: color 0.5s;
+    }
+  }
 }
 
 .masthead-nav > li {
@@ -276,6 +288,7 @@ body {
   .mastfoot,
   .cover-container {
     width: 700px;
+
   }
 }
 

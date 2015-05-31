@@ -5,6 +5,8 @@ gem 'devise'
 
 gem "paperclip", "~> 4.2"
 
+gem 'animate-rails'
+
 gem 'bootstrap-sass'
 gem 'inline_svg'
 gem "opentok", "~> 2.2"
