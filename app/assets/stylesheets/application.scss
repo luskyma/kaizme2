@@ -64,7 +64,6 @@ $signup-color: rgb(84, 203, 197);
 .btn-tod-splash {
   @include button-variant(#FAFAFA, #fea978, #fea978);
   animation-delay: 0.75s;
-
 }
 
 /*
@@ -82,7 +81,6 @@ body {
 
 #pages.signup {
   background-color: $signup-color;
-
 }
 
 // This is our splash page
@@ -96,20 +94,17 @@ body {
 #heading {
   font-family: Lato;
   font-size: 71px;
-
 }
 
 .cover-heading {
   font-size: 45px;
   color: #FAFAFA;
   font-family:  Oswald Normal 400;
-
 }
 
 .lead {
   color: #FAFAFA;
   animation-delay: 0.5s;
-
 }
 
 // Sign up as provider or patient
@@ -235,7 +230,6 @@ body {
   }
 }
 
-
 /*
  * Cover
  */
@@ -248,7 +242,6 @@ body {
   font-weight: bold;
 }
 
-
 /*
  * Footer
  */
@@ -257,7 +250,6 @@ body {
   color: #999; /* IE8 proofing */
   color: rgba(255,255,255,.5);
 }
-
 
 /*
  * Affix and center
@@ -290,7 +282,6 @@ body {
   .mastfoot,
   .cover-container {
     width: 700px;
-
   }
 }
 
@@ -298,11 +289,7 @@ body {
 
 .provider-heading {
   color: #FAFAFA;
-
 }
-
-
-
 
 
 // Dashboard Patients
@@ -310,8 +297,9 @@ body {
 
 .patient-heading {
    color: #FAFAFA;
-
 }
 
-
-
+// Login Page
+.control-label {
+  color: white;
+}
