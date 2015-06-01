@@ -19,8 +19,8 @@
 @import url(http://fonts.googleapis.com/css?family=Robato);
 @import "animate";
 
-$home-color: #50ca93;
-$signup-color: #4bbde3;
+$home-color: #039BE5;
+$signup-color: rgb(84, 203, 197);
 
 /*
  * Globals
@@ -296,7 +296,10 @@ body {
 
 // Dashboard Providers
 
+.provider-heading {
+  color: #FAFAFA;
 
+}
 
 
 
@@ -305,7 +308,10 @@ body {
 // Dashboard Patients
 
 
+.patient-heading {
+   color: #FAFAFA;
 
+}
 
 
 
