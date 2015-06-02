@@ -8,7 +8,7 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-horizontal"}) do |f| %>
         <!-- Logo  -->
           <div class="form-group">
-            <%= image_tag 'keyword.svg', width: "30%", class: "animated zoomIn main-logo" %>
+            <%= image_tag 'keyword.svg', width: "45%", class: "animated zoomIn main-logo" %>
           </div>
           <!-- E-mail  -->
           <div class="form-group">
@@ -32,6 +32,7 @@
           <div class="form-group">
             <div class="col-sm-12">
               <%= f.submit "Log in", class: "btn btn-tod-splash btn-lg btn-block" %>
+              <a href="/">TOD</a>
             </div>
           </div>
         <% end %>
