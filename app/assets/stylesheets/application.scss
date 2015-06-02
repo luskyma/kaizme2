@@ -299,7 +299,32 @@ body {
    color: #FAFAFA;
 }
 
+
 // Login Page
 .control-label {
   color: white;
 }
+.form-control::-webkit-input-placeholder {
+  color: white;
+}
+
+#new_user { margin-top: 60px;
+}
+
+.form-control, .form-control:focus {
+  border-radius: 18px;
+  border-color: #fafafa;
+  border-width: 3px;
+  background-color: #039BE5;
+    padding: 10px;
+    font-size: 15px;
+    text-indent: 20px;
+    outline-width: 50px;
+    outline-color: #fafafa;
+}
+.btn.btn-tod-splash.btn-lg.btn-block {
+  border-radius: 18px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
