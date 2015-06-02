@@ -1,10 +1,8 @@
-
+<!-- New Registration -->
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <h2>Sign up  <%= "Provider" if current_page?('/providers/sign_up') %></h2>
-
-
 
   <% if current_page?('/providers/sign_up') %>
     <%= f.hidden_field :is_provider, value: 'true'%>
