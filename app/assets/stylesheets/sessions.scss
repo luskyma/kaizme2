@@ -29,12 +29,33 @@
 }
 
 .mine {
-  color: #2196F3;
+  color: #fafafa;
+  padding: 5px;
+  font-size: 14px;
+  border-style: solid;
+  border-width:2px;
+  background-color: #039BE5;
+  border-color: #fafafa;
+  border-radius: 2px solid;
+  outline: none;
+  border-radius: 15px 10px 5px;
+  display: left;
 
 }
 
 .theirs {
-  color: #4CAF50;
+  color: #039BE5;
+  display: flex-left;
+  padding: 5px;
+  font-size: 14px;
+  border-style: solid;
+  border-width:2px;
+  background-color: #fafafa;
+  border-color: #039BE5;
+  border-radius: 2px solid;
+  outline: none;
+  border-radius: 15px 10px 5px;
+  justify-content: flex-left;
 
 }
 
@@ -44,7 +65,7 @@
   background: #FAFAFA;
   margin: auto;
   padding: 0 0 50px 0;
-  height: 500px;
+  height: 300px;
   overflow-y: auto;
 
 }
