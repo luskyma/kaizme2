@@ -12,13 +12,15 @@
         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  Select a Provider
         </h3>
       </div>
-        <div class="panel-body">
-          <% @providers.each do |user_provider| %>
+      <br>
+      <div class="panel-body">
+        <% @providers.each do |user_provider| %>
           <%= link_to "#{user_provider.first_name}", appointments_book_path(provider_id: user_provider.provider.id) %>
-          <% end %>
-        </div>
+        <% end %>
+      </div>
 
-        <div class="text-center">
+      <div class="text-center">
+      </div>
     </div>
   </div>
 </div>

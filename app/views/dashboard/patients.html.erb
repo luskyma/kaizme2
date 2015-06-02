@@ -2,42 +2,41 @@
 <br>
 <h1 class="patient-heading">Welcome!</h1>
 <div class="container">
-<!-- displays availability scheduler on the dashboard page -->
-<%#= (render partial: 'appointments/form') %>
-
-<div class="row">
-  <div class="col-lg-6 col-lg-offset-3">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-    <h3 class="panel-title">
-    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>  Appointments
-    </h3>
-    </div>
-    <div class="panel-body">
-    <% @appointments.each do |appointment| %>
-      <div class="text-center">
-        <p>
-          <%= appointment.provider.user.first_name %>
-          <!-- <td><%#= appointment.provider.user.email %></td> -->
-          <!-- <td><%#= appointment.patient.user.email %></td> -->
-          <%= appointment.start.strftime('%A, %b %d, %I:%M %p') %>
-        </p>
-        <p>
-          <% if appointment.session %>
-            <%= link_to "Join Session", tok_view_path(appointment.session), class: 'btn btn-xs btn-success' %>
+      <!-- displays availability scheduler on the dashboard page -->
+      <%#= (render partial: 'appointments/form') %>
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>  Appointments
+          </h3>
+        </div>
+        <div class="panel-body">
+          <% @appointments.each do |appointment| %>
+            <div class="text-center">
+              <p>
+                <%= appointment.provider.user.first_name %>
+                <!-- <td><%#= appointment.provider.user.email %></td> -->
+                <!-- <td><%#= appointment.patient.user.email %></td> -->
+                <%= appointment.start.strftime('%A, %b %d, %I:%M %p') %>
+              </p>
+              <p>
+                <% if appointment.session %>
+                  <%= link_to "Join Session", tok_view_path(appointment.session), class: 'btn btn-xs btn-success' %>
+                <% end %>
+                  <%= link_to 'Cancel', appointment, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure you want to cancel this appointment?' } %>
+              </p>
+            </div>
           <% end %>
-           <%= link_to 'Cancel', appointment, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure you want to cancel this appointment?' } %>
-        </p>
+          <% if @appointments.blank? %>
+            <p> You have no appointments.</p>
+            <p>
+            <%= link_to "Find a Provider", providers_find_a_provider_path,  class: "btn btn-success" %>
+            </p>
+          <% end %>
+        </div>
       </div>
-    <% end %>
-        <% if @appointments.blank? %>
-         <p> You have no appointments.</p>
-        <p>
-        <%= link_to "Find a Provider", providers_find_a_provider_path,  class: "btn btn-success" %>
-        </p>
-        <% end %>
+    </div>
   </div>
-  </div>
-  </div>
-</div>
 </div>

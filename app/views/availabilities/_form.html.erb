@@ -9,9 +9,9 @@
     <h2><%= pluralize(@availability.errors.count, "error") %> prohibited this availability from being saved:</h2>
 
     <ul>
-    <% @availability.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
+      <% @availability.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
@@ -35,31 +35,20 @@
               <% 6.upto(20) do |hour| %>
                 <div>
                   <span class="time">
-                  <%
-                    this_datetime = this_day.to_datetime.change(hour: hour)
-                    availability = avails.find { |a| a.start == this_datetime }
-                    checked = !availability.nil?
-                  %>
-                  <%= this_datetime.strftime('%I:%M %p') %>
-                  <%= check_box_tag this_datetime.to_s, this_datetime.to_s, checked, class: "avail", data: {availability:  (checked ? availability.id : '') } %>
+                    <%
+                      this_datetime = this_day.to_datetime.change(hour: hour)
+                      availability = avails.find { |a| a.start == this_datetime }
+                      checked = !availability.nil?
+                    %>
+                    <%= this_datetime.strftime('%I:%M %p') %>
+                    <%= check_box_tag this_datetime.to_s, this_datetime.to_s, checked, class: "avail", data: {availability:  (checked ? availability.id : '') } %>
                   </span>
                 </div>
-            <% end %>
-
+              <% end %>
             </div>
           </div>
         </div>
       </div>
-
-
-
-
-
     </div>
   <% end %>
 </div>
-
-
-
-
-

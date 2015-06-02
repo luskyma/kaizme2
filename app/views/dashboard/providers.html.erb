@@ -5,40 +5,38 @@
 <!-- Below we have the working scheduler for managing appointments -->
 <div class="row">
   <div class="col-lg-6 col-lg-offset-3">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-    <h3 class="panel-title">
-    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>  Appointments
-    </h3>
-    </div>
-    <div class="panel-body">
-    <% @appointments.each do |appointment| %>
-      <div class="text-center">
-        <p>
-          <%= appointment.patient.user.first_name %>
-          <%= appointment.patient.user.last_name %>
-          <%= appointment.start.strftime('%a, %b %d %I:%M %p') %>
-        </p>
-        <p>
-          <% if appointment.session %>
-            <%= link_to "Join Session", tok_view_path(appointment.session), class: 'btn btn-xs btn-success' %>
-            <% else %>
-            <%= link_to "Start Session",  tok_new_path(appointment_id: appointment.id), class: 'btn btn-xs btn-success', method: 'get', remote: true %>
-          <% end %>
-           <%= link_to 'Cancel', appointment, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure you want to cancel this appointment?' } %>
-        </p>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>  Appointments
+        </h3>
       </div>
-    <% end %>
-        <% if @appointments.blank? %>
-         <p> You have no appointments.</p>
+      <div class="panel-body">
+        <% @appointments.each do |appointment| %>
+          <div class="text-center">
+            <p>
+              <%= appointment.patient.user.first_name %>
+              <%= appointment.patient.user.last_name %>
+              <%= appointment.start.strftime('%a, %b %d %I:%M %p') %>
+            </p>
+            <p>
+              <% if appointment.session %>
+              <%= link_to "Join Session", tok_view_path(appointment.session), class: 'btn btn-xs btn-success' %>
+              <% else %>
+              <%= link_to "Start Session",  tok_new_path(appointment_id: appointment.id), class: 'btn btn-xs btn-success', method: 'get', remote: true %>
+              <% end %>
+              <%= link_to 'Cancel', appointment, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure you want to cancel this appointment?' } %>
+            </p>
+          </div>
         <% end %>
-  </div>
+        <% if @appointments.blank? %>
+          <p> You have no appointments.</p>
+        <% end %>
+    </div>
   </div>
   </div>
 </div>
 <!-- displays availability scheduler on the dashboard page -->
-
-
 <div class="row">
   <div class="col-lg-6 col-lg-offset-3">
     <div class="panel panel-default">
@@ -47,7 +45,7 @@
           <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>  Availability Scheduler
         </h3>
           <div class="panel-body">
-              <%= (render partial: 'availabilities/form') %>
+            <%= (render partial: 'availabilities/form') %>
           </div>
       </div>
     </div>

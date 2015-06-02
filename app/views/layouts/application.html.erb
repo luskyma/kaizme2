@@ -50,17 +50,16 @@
           </li>
 
         <% else %>
-        <li><%= link_to "Login", new_user_session_path %></li>
-        <li><% link_to 'TOD', root_path, class: "navbar-brand" %></li>
+          <li><%= link_to "Login", new_user_session_path %></li>
+          <li><% link_to 'TOD', root_path, class: "navbar-brand" %></li>
         <% end %>
       </ul>
     </div>
   </div>
 </nav>
-</div>
 
   <% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
+    <div class="notice"><%= flash[:notice] %></div>
   <% end %>
   <%= yield %>
 </body>

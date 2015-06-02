@@ -1,7 +1,3 @@
-<br>
-<br>
-<br>
-<br>
 
 <div class="row">
   <div class="col-lg-6 col-lg-offset-3">
@@ -13,17 +9,17 @@
       </div>
         <div class="panel-body">
 
-<% @availabilities.each do |availability| %>
-  <% if Appointment.where(start: availability.start, end: availability.end, provider_id: availability.provider_id).empty? %>
-    <%= link_to "#{availability.start.strftime('%A %B %d %I:%M %p')}", new_appointment_path(availability_id: availability.id) %><br>
-  <% end %>
-<% end %>
-<br>
-<%= link_to 'Back to Dashboard', dashboard_patients_path, class: 'btn btn-xs btn-success'%>
-<%= link_to 'Back to Providers', :back, class: 'btn btn-xs btn-primary' %>
-</div>
-
-        <div class="text-center">
+          <% @availabilities.each do |availability| %>
+            <% if Appointment.where(start: availability.start, end: availability.end, provider_id: availability.provider_id).empty? %>
+              <%= link_to "#{availability.start.strftime('%A %B %d %I:%M %p')}", new_appointment_path(availability_id: availability.id) %><br>
+            <% end %>
+          <% end %>
+          <br>
+          <%= link_to 'Back to Dashboard', dashboard_patients_path, class: 'btn btn-xs btn-success'%>
+          <%= link_to 'Back to Providers', :back, class: 'btn btn-xs btn-primary' %>
+        </div>
+      <div class="text-center">
+      </div>
     </div>
   </div>
 </div>

@@ -34,9 +34,9 @@
   </div>
 
   <div class="field">
-  <%= f.label :avatar, "Profile Image" %><br />
-  <%= image_tag @user.avatar.url %>
-  <%= f.file_field :avatar %>
+    <%= f.label :avatar, "Profile Image" %><br />
+    <%= image_tag @user.avatar.url %>
+    <%= f.file_field :avatar %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

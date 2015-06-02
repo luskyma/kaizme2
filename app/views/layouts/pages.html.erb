@@ -14,29 +14,27 @@
 <body id="<%= params[:controller] %>" class="<%= params[:action] %>">
 
 <div class="site-wrapper">
-
-    <div class="site-wrapper-inner">
-      <div class="cover-container">
-        <div class="masthead clearfix">
-          <div class="inner">
-            <h3 class="masthead-brand">
-              <%= link_to "TOD", root_path%>
-            </h3>
-            <nav>
-              <ul class="nav masthead-nav">
-                <li><%=link_to 'About Us', about_path %></li>
-                <li><%= link_to 'Login', new_user_session_path %></li>
-              </ul>
-            </nav>
-          </div>
+  <div class="site-wrapper-inner">
+    <div class="cover-container">
+      <div class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand">
+            <%= link_to "TOD", root_path%>
+          </h3>
+          <nav>
+            <ul class="nav masthead-nav">
+              <li><%=link_to 'About Us', about_path %></li>
+              <li><%= link_to 'Login', new_user_session_path %></li>
+            </ul>
+          </nav>
         </div>
+      </div>
 
-        <%= yield %>
+      <%= yield %>
 
-        </div>
     </div>
+  </div>
 </div>
-
 
 </body>
 </html>

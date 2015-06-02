@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-before_action :authenticate_user!
+  before_action :authenticate_user!
   def index
     if current_user.is_provider
       @appointments = Appointment.for_provider(current_user.provider.id)
@@ -7,7 +7,6 @@ before_action :authenticate_user!
       @appointments = Appointment.for_patient(current_user.patient.id)
     end
   end
-
   # GET /appointments/1
   # GET /appointments/1.json
   def show

@@ -18,7 +18,6 @@ class AvailabilitiesController < ApplicationController
   def new
     @availability = Availability.new
     @availabilities = current_user.provider.availabilities
-
   end
 
   # GET /availabilities/1/edit
@@ -73,12 +72,12 @@ class AvailabilitiesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_availability
-      @availability = Availability.find(params[:id])
-    end
+  def set_availability
+    @availability = Availability.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def availability_params
-      params.require(:availability).permit(:provider_id, :start, :end, :patient_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def availability_params
+    params.require(:availability).permit(:provider_id, :start, :end, :patient_id)
+  end
 end
