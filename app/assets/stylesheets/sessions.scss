@@ -13,6 +13,9 @@
 #subscriber {
   height: 90vh;
   background: black;
+  @media (max-width: 414px) {
+    height: 50vh;
+  }
 }
 
 
@@ -20,12 +23,19 @@
   font-family: "Helvetica Neue", Arial;
   color: gray;
   font-weight: regular;
+  border-radius: 5px;
+  width: 275px;
+  padding: 3px;
+  margin: 5px;
+
 }
 
 #history {
   font-family: "Helvetica Neue", Arial;
   font-weight: regular;
   font-size: 18px;
+  border-radius: 5px;
+
 }
 
 .mine {
@@ -38,8 +48,7 @@
   border-color: #fafafa;
   border-radius: 2px solid;
   outline: none;
-  border-radius: 15px 10px 5px;
-  display: left;
+  border-radius: 5px;
 
 }
 
@@ -54,8 +63,8 @@
   border-color: #039BE5;
   border-radius: 2px solid;
   outline: none;
-  border-radius: 15px 10px 5px;
-  justify-content: flex-left;
+  border-radius: 5px;
+  align-items: flex-end;
 
 }
 
@@ -64,11 +73,27 @@
   list-style: none;
   background: #FAFAFA;
   margin: auto;
-  padding: 0 0 50px 0;
+  padding: 10px;
   height: 300px;
   overflow-y: auto;
+  border-radius: 5px;
+  @media (max-width: 414px) {
+    height: 180px;
+  }
+}
+
+.module {margin-top:20px;}
+
+
+
+ .input-group-btn:last-child > .btn {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  color: #039BE5;
+  background-color: #FAFAFA;
 
 }
+
 // .avatar {
 //   width: 40px;
 // }
