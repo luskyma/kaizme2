@@ -11,6 +11,7 @@
 }
 
 #subscriber {
+  margin-top: 20px;
   height: 90vh;
   background: black;
   @media (max-width: 414px) {
@@ -72,7 +73,7 @@
   display: flex;
   list-style: none;
   background: #FAFAFA;
-  margin: auto;
+  margin-top: 100px;
   padding: 10px;
   height: 300px;
   overflow-y: auto;
