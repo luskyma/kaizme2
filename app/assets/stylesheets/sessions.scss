@@ -74,16 +74,18 @@
   list-style: none;
   background: #FAFAFA;
   margin-top: 100px;
-  padding: 10px;
+  padding: 5px;
   height: 300px;
   overflow-y: auto;
   border-radius: 5px;
   @media (max-width: 414px) {
-    height: 180px;
+    height: 150px;
+    margin-top: 3px;
   }
+
 }
 
-.module {margin-top:20px;}
+.module {margin-bottom: 10px;}
 
 
 
